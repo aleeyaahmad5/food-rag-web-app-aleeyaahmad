@@ -36,6 +36,8 @@ interface Message {
 
 interface FoodChatProps {
   onMessageCountChange?: (count: number) => void
+  showHistory?: boolean
+  onHistoryChange?: (show: boolean) => void
 }
 
 interface Conversation {
@@ -53,13 +55,12 @@ const exampleQuestions = [
   { icon: ChefHat, text: "What makes different cuisines unique?", color: "text-purple-500" },
 ]
 
-export function FoodChat({ onMessageCountChange }: FoodChatProps) {
+export function FoodChat({ onMessageCountChange, showHistory = false, onHistoryChange }: FoodChatProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [question, setQuestion] = useState("")
   const [loading, setLoading] = useState(false)
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [currentConversationId, setCurrentConversationId] = useState<string>("")
-  const [showHistory, setShowHistory] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const isFirstLoadRef = useRef(true)
@@ -138,7 +139,7 @@ export function FoodChat({ onMessageCountChange }: FoodChatProps) {
     if (conversation) {
       setCurrentConversationId(conversationId)
       setMessages(conversation.messages)
-      setShowHistory(false)
+      onHistoryChange?.(false)
     }
   }
 
@@ -323,14 +324,14 @@ export function FoodChat({ onMessageCountChange }: FoodChatProps) {
 
       {/* Mobile Drawer */}
       {showHistory && (
-        <div className="fixed inset-0 z-30 bg-black/50 lg:hidden" onClick={() => setShowHistory(false)} />
+        <div className="fixed inset-0 z-30 bg-black/50 lg:hidden" onClick={() => onHistoryChange?.(false)} />
       )}
       <div
         className={`fixed inset-y-0 left-0 z-40 w-64 sm:w-72 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col lg:hidden transition-transform duration-300 ${
           showHistory ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <button onClick={() => setShowHistory(false)} className="absolute top-4 right-4 p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg">
+        <button onClick={() => onHistoryChange?.(false)} className="absolute top-4 right-4 p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg">
           <Plus className="w-5 h-5 text-slate-600 dark:text-slate-400 rotate-45" />
         </button>
         <div className="p-4 border-b border-slate-200 dark:border-slate-700 mt-8">
@@ -338,7 +339,7 @@ export function FoodChat({ onMessageCountChange }: FoodChatProps) {
           <Button
             onClick={() => {
               createNewConversation()
-              setShowHistory(false)
+              onHistoryChange?.(false)
             }}
             className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-lg flex items-center justify-center gap-2 py-2 font-medium shadow-md hover:shadow-lg transition-all"
           >
@@ -355,7 +356,7 @@ export function FoodChat({ onMessageCountChange }: FoodChatProps) {
                 key={conv.id}
                 onClick={() => {
                   loadConversation(conv.id)
-                  setShowHistory(false)
+                  onHistoryChange?.(false)
                 }}
                 className={`group flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-all ${
                   currentConversationId === conv.id
@@ -552,14 +553,6 @@ export function FoodChat({ onMessageCountChange }: FoodChatProps) {
             </Card>
           </div>
         </div>
-
-        {/* Mobile History Button */}
-        <button
-          onClick={() => setShowHistory(!showHistory)}
-          className="lg:hidden fixed bottom-20 right-4 z-30 rounded-full w-14 h-14 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
-        >
-          <Clock className="w-6 h-6" />
-        </button>
       </div>
     </div>
   )

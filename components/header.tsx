@@ -1,6 +1,6 @@
 "use client"
 
-import { UtensilsCrossed, Moon, Sun, Home } from "lucide-react"
+import { UtensilsCrossed, Moon, Sun, Home, Clock } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
@@ -8,9 +8,11 @@ import { useEffect, useState } from "react"
 interface HeaderProps {
   onClearChat?: () => void
   messageCount?: number
+  showHistory?: boolean
+  onHistoryToggle?: (show: boolean) => void
 }
 
-export function Header({ onClearChat, messageCount = 0 }: HeaderProps) {
+export function Header({ onClearChat, messageCount = 0, showHistory = false, onHistoryToggle }: HeaderProps) {
   const { setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -41,6 +43,19 @@ export function Header({ onClearChat, messageCount = 0 }: HeaderProps) {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* History button - Mobile */}
+          {mounted && onHistoryToggle && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onHistoryToggle(!showHistory)}
+              className="lg:hidden h-9 w-9 text-slate-500 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+              title="Chat history"
+            >
+              <Clock className="w-4 h-4" />
+            </Button>
+          )}
+
           {/* Home button */}
           {messageCount > 0 && onClearChat && (
             <Button
