@@ -79,19 +79,23 @@ export async function POST(req: Request) {
     // Generate AI response using Groq with streaming
     const llmStart = performance.now()
     
+    // Adjust settings based on model - 70B needs more time
+    const maxTokens = selectedModel.includes("70b") ? 1024 : 500
+    
     const result = streamText({
       model: groqClient(selectedModel),
       system:
         "You are a helpful food knowledge assistant. Answer questions based on the provided context. Be concise and informative.",
       prompt: `Context:\n${context}\n\nQuestion: ${question}\n\nAnswer based on the context above:`,
       temperature: 0.7,
-      maxOutputTokens: 500,
+      maxTokens: maxTokens,
       onFinish: async ({ usage }) => {
         const llmProcessingTime = performance.now() - llmStart
         const totalResponseTime = performance.now() - startTime
         
         // Log metrics for debugging
         console.log("[Performance Metrics]", {
+          model: selectedModel,
           vectorSearchTime: Math.round(vectorSearchTime),
           llmProcessingTime: Math.round(llmProcessingTime),
           totalResponseTime: Math.round(totalResponseTime),

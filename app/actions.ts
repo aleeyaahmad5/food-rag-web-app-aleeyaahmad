@@ -38,6 +38,13 @@ interface RAGResponse {
 export async function ragQuery(question: string, model: string = "llama-3.1-8b-instant"): Promise<RAGResponse> {
   const startTime = performance.now()
   
+  // Validate model selection
+  const validModels = ["llama-3.1-8b-instant", "llama-3.1-70b-versatile"]
+  const selectedModel = validModels.includes(model) ? model : "llama-3.1-8b-instant"
+  
+  // Adjust max tokens based on model
+  const maxTokens = selectedModel.includes("70b") ? 1024 : 500
+  
   try {
     // Vector search using Upstash
     const vectorSearchStart = performance.now()
@@ -61,7 +68,7 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
     // Generate AI response using Groq
     const llmStart = performance.now()
     const completion = await groq.chat.completions.create({
-      model: model,
+      model: selectedModel,
       messages: [
         {
           role: "system",
@@ -74,7 +81,7 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
         },
       ],
       temperature: 0.7,
-      max_tokens: 500,
+      max_tokens: maxTokens,
     })
     const llmProcessingTime = performance.now() - llmStart
 
