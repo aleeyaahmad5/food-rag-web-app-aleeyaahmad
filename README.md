@@ -107,6 +107,14 @@ food-rag-web-app/
 │       ├── card.tsx
 │       ├── input.tsx
 │       └── spinner.tsx
+├── docs/                   # 📚 Documentation
+│   ├── ARCHITECTURE.md     # System architecture & design
+│   ├── API.md              # API reference documentation
+│   └── DEVELOPMENT.md      # Developer setup guide
+├── python-reference/       # 🐍 Original Python code
+│   ├── rag_system.py       # Python RAG implementation
+│   ├── seed_data.py        # Database seeder script
+│   └── README.md           # Python reference guide
 ├── lib/
 │   └── utils.ts            # Utility functions
 ├── public/                 # Static assets
@@ -346,12 +354,34 @@ Sources:
 ✅ **Performance Metrics** - Track vector search, LLM processing, and total response times  
 ✅ **Persistent Chat Memory** - Conversations auto-saved with localStorage  
 ✅ **Multi-Conversation Support** - Manage multiple independent chat threads  
+✅ **Social Sharing** - Share interesting food discoveries on Twitter, Facebook, LinkedIn  
 ✅ **Professional Web Interface** - Modern, responsive design with smooth interactions  
 ✅ **AI-Assisted Development** - Built using v0.dev for rapid, high-quality development  
 ✅ **Cloud Deployment** - Live on Vercel, accessible worldwide  
 ✅ **Production-Ready** - Error handling, loading states, optimized performance  
 ✅ **Type-Safe Code** - Full TypeScript implementation  
+✅ **Comprehensive Documentation** - Architecture, API, and development guides  
 ✅ **Portfolio Quality** - Professional UI/UX suitable for employer/client showcase  
+
+## 📚 Documentation
+
+For detailed documentation, see the `/docs` folder:
+
+| Document | Description |
+|----------|-------------|
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design, data flow, and component architecture |
+| [API.md](docs/API.md) | Complete API reference with examples |
+| [DEVELOPMENT.md](docs/DEVELOPMENT.md) | Setup instructions and development guide |
+
+### Python Reference
+
+The `/python-reference` folder contains the original Python RAG implementation from Weeks 2-3:
+
+| File | Description |
+|------|-------------|
+| [rag_system.py](python-reference/rag_system.py) | Main RAG pipeline implementation |
+| [seed_data.py](python-reference/seed_data.py) | Database seeder script |
+| [README.md](python-reference/README.md) | Comparison guide: Python vs Next.js |  
 
 ## 📚 Food Knowledge Base
 

@@ -6,7 +6,7 @@ import { useState, useRef, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { SendHorizontal, Loader2, Sparkles, User, Apple, Flame, Salad, ChefHat, TrendingUp, MapPin, BookOpen, Trash2, Plus, Clock, Zap, Database, Brain, Timer, Radio } from "lucide-react"
+import { SendHorizontal, Loader2, Sparkles, User, Apple, Flame, Salad, ChefHat, TrendingUp, MapPin, BookOpen, Trash2, Plus, Clock, Zap, Database, Brain, Timer, Radio, Share2, Twitter, Facebook, Linkedin, Copy, Check } from "lucide-react"
 import { ragQuery, type PerformanceMetrics } from "@/app/actions"
 import { useChat } from "ai/react"
 
@@ -357,6 +357,27 @@ export function FoodChat({ onMessageCountChange, showHistory = false, onHistoryC
     inputRef.current?.focus()
   }
 
+  const [copiedMessageId, setCopiedMessageId] = useState<string | null>(null)
+
+  const handleShare = (platform: string, message: Message) => {
+    const shareText = `🍽️ Food Discovery!\n\nQ: ${message.question}\n\nA: ${message.answer.substring(0, 200)}${message.answer.length > 200 ? '...' : ''}\n\nDiscover more at Food RAG!`
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
+    
+    const urls: Record<string, string> = {
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+    }
+
+    if (platform === 'copy') {
+      navigator.clipboard.writeText(`${message.question}\n\n${message.answer}`)
+      setCopiedMessageId(message.id)
+      setTimeout(() => setCopiedMessageId(null), 2000)
+    } else {
+      window.open(urls[platform], '_blank', 'width=600,height=400')
+    }
+  }
+
   const getRelevanceColor = (percent: number) => {
     if (percent >= 80) return "bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800"
     if (percent >= 60) return "bg-yellow-100 dark:bg-yellow-900/50 text-yellow-700 dark:text-yellow-300 border-yellow-200 dark:border-yellow-800"
@@ -574,6 +595,47 @@ export function FoodChat({ onMessageCountChange, showHistory = false, onHistoryC
                             <div className="flex items-center gap-2 mt-2 text-xs text-blue-600 dark:text-blue-400">
                               <Radio className="w-3 h-3 animate-pulse" />
                               <span>Streaming response...</span>
+                            </div>
+                          )}
+                          
+                          {/* Share buttons */}
+                          {!message.isStreaming && (
+                            <div className="flex items-center gap-1 mt-3 pt-3 border-t border-slate-200/50 dark:border-slate-700/50">
+                              <span className="text-xs text-slate-500 dark:text-slate-400 mr-2 flex items-center gap-1">
+                                <Share2 className="w-3 h-3" /> Share:
+                              </span>
+                              <button
+                                onClick={() => handleShare('twitter', message)}
+                                className="p-1.5 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 text-slate-500 hover:text-blue-500 transition-colors"
+                                title="Share on Twitter/X"
+                              >
+                                <Twitter className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                onClick={() => handleShare('facebook', message)}
+                                className="p-1.5 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 text-slate-500 hover:text-blue-600 transition-colors"
+                                title="Share on Facebook"
+                              >
+                                <Facebook className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                onClick={() => handleShare('linkedin', message)}
+                                className="p-1.5 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 text-slate-500 hover:text-blue-700 transition-colors"
+                                title="Share on LinkedIn"
+                              >
+                                <Linkedin className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                onClick={() => handleShare('copy', message)}
+                                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+                                title="Copy to clipboard"
+                              >
+                                {copiedMessageId === message.id ? (
+                                  <Check className="w-3.5 h-3.5 text-green-500" />
+                                ) : (
+                                  <Copy className="w-3.5 h-3.5" />
+                                )}
+                              </button>
                             </div>
                           )}
                         </Card>
