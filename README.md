@@ -24,7 +24,7 @@ The application leverages **AI-assisted development** using v0.dev to build a so
 
 ## 🚀 Live Demo
 
-**[Visit the Live Application](https://vercel.com/aleeya-ahmads-projects/food-rag-web-app)**
+**[Visit the Live Application](https://v0-week4deliverable-vercel.vercel.app/)**
 
 Try asking questions like:
 - "What fruits are popular in tropical regions?"
