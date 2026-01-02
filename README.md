@@ -17,7 +17,8 @@ The application leverages **AI-assisted development** using v0.dev to build a so
 - ✨ **AI-Powered Chat Interface** - Ask questions about food, cuisines, and cooking
 - 🔍 **Semantic Search** - Vector-based similarity search using Upstash Vector Database
 - 🧠 **LLM Integration** - Groq API for intelligent response generation  
-- 📊 **Source Attribution** - See relevant sources with relevance scores
+- � **Model Selection** - Choose between Llama 3.1 8B (fast) or 70B (versatile)
+- �📊 **Source Attribution** - See relevant sources with relevance scores
 - 💾 **Conversation History** - Persistent chat memory with localStorage auto-save
 - 🎨 **Professional UI/UX** - Modern, responsive design with dark mode support
 - ⚡ **Real-time Streaming** - Stream AI responses in real-time with toggle option
@@ -227,7 +228,9 @@ This project is configured for automatic deployment via Vercel:
 
 ### Groq LLM Integration
 
-- **Model**: `llama-3.1-8b-instant`
+- **Models Available**:
+  - `llama-3.1-8b-instant` - Fast responses, optimized for speed
+  - `llama-3.1-70b-versatile` - More capable, better for complex queries
 - **Temperature**: 0.7 (balanced creativity and accuracy)
 - **Max Tokens**: 500
 - **System Prompt**: Food knowledge assistant context
@@ -350,6 +353,7 @@ Sources:
 ## 🎯 Key Achievements
 
 ✅ **Fully Functional RAG System** - Vector search + LLM generation working seamlessly  
+✅ **Model Selection** - Choose between fast (8B) and smart (70B) Llama models  
 ✅ **Real-Time Streaming** - Optional streaming responses with live text updates  
 ✅ **Performance Metrics** - Track vector search, LLM processing, and total response times  
 ✅ **Persistent Chat Memory** - Conversations auto-saved with localStorage  

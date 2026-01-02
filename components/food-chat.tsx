@@ -68,6 +68,7 @@ export function FoodChat({ onMessageCountChange, showHistory = false, onHistoryC
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [currentConversationId, setCurrentConversationId] = useState<string>("")
   const [useStreaming, setUseStreaming] = useState(true)
+  const [selectedModel, setSelectedModel] = useState<string>("llama-3.1-8b-instant")
   const [streamingSources, setStreamingSources] = useState<SearchResult[]>([])
   const [streamingMetrics, setStreamingMetrics] = useState<PerformanceMetrics | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -233,7 +234,7 @@ export function FoodChat({ onMessageCountChange, showHistory = false, onHistoryC
         const response = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: currentQuestion }),
+          body: JSON.stringify({ question: currentQuestion, model: selectedModel }),
         })
 
         if (!response.ok) {
@@ -298,7 +299,7 @@ export function FoodChat({ onMessageCountChange, showHistory = false, onHistoryC
         })
       } else {
         // Non-streaming mode using server action
-        const result = await ragQuery(currentQuestion)
+        const result = await ragQuery(currentQuestion, selectedModel)
         
         setMessages((prev) => {
           const updatedMessages = prev.map((msg) =>
@@ -746,8 +747,19 @@ export function FoodChat({ onMessageCountChange, showHistory = false, onHistoryC
         {/* Input Form */}
         <div className="border-t border-slate-200 dark:border-slate-700 p-4 lg:p-6 bg-gradient-to-b from-transparent to-white dark:to-slate-800">
           <div className="max-w-3xl mx-auto space-y-2">
-            {/* Streaming Toggle */}
-            <div className="flex items-center justify-end gap-2">
+            {/* Model Selection & Streaming Toggle */}
+            <div className="flex items-center justify-end gap-2 flex-wrap">
+              {/* Model Selector */}
+              <select
+                value={selectedModel}
+                onChange={(e) => setSelectedModel(e.target.value)}
+                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-0 focus:ring-2 focus:ring-blue-500 cursor-pointer transition-all hover:bg-slate-300 dark:hover:bg-slate-600"
+              >
+                <option value="llama-3.1-8b-instant">⚡ Llama 3.1 8B (Fast)</option>
+                <option value="llama-3.1-70b-versatile">🧠 Llama 3.1 70B (Smart)</option>
+              </select>
+              
+              {/* Streaming Toggle */}
               <button
                 type="button"
                 onClick={() => setUseStreaming(!useStreaming)}

@@ -35,7 +35,7 @@ interface RAGResponse {
   metrics: PerformanceMetrics
 }
 
-export async function ragQuery(question: string): Promise<RAGResponse> {
+export async function ragQuery(question: string, model: string = "llama-3.1-8b-instant"): Promise<RAGResponse> {
   const startTime = performance.now()
   
   try {
@@ -61,7 +61,7 @@ export async function ragQuery(question: string): Promise<RAGResponse> {
     // Generate AI response using Groq
     const llmStart = performance.now()
     const completion = await groq.chat.completions.create({
-      model: "llama-3.1-8b-instant",
+      model: model,
       messages: [
         {
           role: "system",

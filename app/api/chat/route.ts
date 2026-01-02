@@ -39,7 +39,7 @@ export async function POST(req: Request) {
   const startTime = performance.now()
 
   try {
-    const { question } = await req.json()
+    const { question, model = "llama-3.1-8b-instant" } = await req.json()
 
     if (!question || typeof question !== "string") {
       return new Response(JSON.stringify({ error: "Question is required" }), {
@@ -47,6 +47,10 @@ export async function POST(req: Request) {
         headers: { "Content-Type": "application/json" },
       })
     }
+
+    // Validate model selection
+    const validModels = ["llama-3.1-8b-instant", "llama-3.1-70b-versatile"]
+    const selectedModel = validModels.includes(model) ? model : "llama-3.1-8b-instant"
 
     const index = getUpstashIndex()
     const groqClient = getGroq()
@@ -76,7 +80,7 @@ export async function POST(req: Request) {
     const llmStart = performance.now()
     
     const result = streamText({
-      model: groqClient("llama-3.1-8b-instant"),
+      model: groqClient(selectedModel),
       system:
         "You are a helpful food knowledge assistant. Answer questions based on the provided context. Be concise and informative.",
       prompt: `Context:\n${context}\n\nQuestion: ${question}\n\nAnswer based on the context above:`,
