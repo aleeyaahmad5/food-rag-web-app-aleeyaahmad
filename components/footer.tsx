@@ -30,7 +30,7 @@ export function Footer() {
             Next.js + v0.dev
           </p>
         </div>
-        <div className="mt-3 pt-3 border-t border-slate-200/30 dark:border-slate-700/30 text-center">
+        {/* <div className="mt-3 pt-3 border-t border-slate-200/30 dark:border-slate-700/30 text-center">
           <p className="text-xs text-slate-500 dark:text-slate-500">
             AI Week 4 Deliverables • Full-Stack RAG Web Application • 
             <a 
@@ -42,7 +42,7 @@ export function Footer() {
               Live Demo <ExternalLink className="w-3 h-3" />
             </a>
           </p>
-        </div>
+        </div> */}
       </div>
     </footer>
   )
