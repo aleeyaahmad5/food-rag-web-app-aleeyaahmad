@@ -1,0 +1,11 @@
+# Updated - RAG System Dependencies
+# Migrated to cloud services (Upstash Vector + Groq)
+
+# Upstash Vector SDK - Cloud vector database with built-in embeddings
+upstash-vector>=0.3.0
+
+# Groq SDK - Fast LLM inference API
+groq>=0.4.0
+
+# Environment variable management
+python-dotenv>=1.0.0

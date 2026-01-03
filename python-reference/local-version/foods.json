@@ -1,0 +1,677 @@
+[
+  {
+    "id": "1",
+    "text": "A banana is a yellow fruit that is soft and sweet.",
+    "region": "Tropical",
+    "type": "Fruit"
+  },
+  {
+    "id": "2",
+    "text": "A lemon is yellow and very sour.",
+    "region": "Tropical",
+    "type": "Fruit"
+  },
+  {
+    "id": "3",
+    "text": "A chili pepper is red and extremely spicy.",
+    "region": "Various",
+    "type": "Spice"
+  },
+  {
+    "id": "4",
+    "text": "An apple can be red, green, or yellow and has a sweet taste.",
+    "region": "Global",
+    "type": "Fruit"
+  },
+  {
+    "id": "5",
+    "text": "Biryani is a flavorful Indian rice dish made with spices, rice, and usually meat or vegetables.",
+    "region": "Hyderabad",
+    "type": "Main Course"
+  },
+  {
+    "id": "6",
+    "text": "Samosa is a fried or baked pastry with a spicy potato filling, popular as a snack in India.",
+    "region": "North India",
+    "type": "Snack"
+  },
+  {
+    "id": "7",
+    "text": "Paneer butter masala is a creamy tomato-based curry made with Indian cottage cheese.",
+    "region": "Punjab",
+    "type": "Main Course"
+  },
+  {
+    "id": "8",
+    "text": "Masala dosa is a thin, crispy fermented crepe filled with spicy mashed potatoes.",
+    "region": "South India",
+    "type": "Breakfast"
+  },
+  {
+    "id": "9",
+    "text": "Chole is a spicy chickpea curry from North India, often eaten with rice or bhature.",
+    "region": "North India",
+    "type": "Main Course"
+  },
+  {
+    "id": "10",
+    "text": "Rasgulla is a spongy dessert made from ball-shaped dumplings of chhena cooked in light syrup.",
+    "region": "Bengal",
+    "type": "Dessert"
+  },
+  {
+    "id": "11",
+    "text": "Naan is a soft and fluffy flatbread that is traditionally baked in a tandoor.",
+    "region": "North India",
+    "type": "Bread"
+  },
+  {
+    "id": "12",
+    "text": "Tandoori chicken is chicken marinated in yogurt and spices, roasted in a tandoor.",
+    "region": "Punjab",
+    "type": "Main Course"
+  },
+  {
+    "id": "13",
+    "text": "Gulab jamun is a deep-fried milk-solid ball soaked in sweet syrup, served as dessert.",
+    "region": "India",
+    "type": "Dessert"
+  },
+  {
+    "id": "14",
+    "text": "Pav bhaji is a spicy vegetable mash served with soft buttered buns.",
+    "region": "Mumbai",
+    "type": "Snack"
+  },
+  {
+    "id": "15",
+    "text": "Raita is a yogurt-based condiment that cools down spicy dishes.",
+    "region": "India",
+    "type": "Condiment"
+  },
+  {
+    "id": "16",
+    "text": "Dhokla is a soft and fluffy savory cake made from fermented rice and chickpea flour.",
+    "region": "Gujarat",
+    "type": "Snack"
+  },
+  {
+    "id": "17",
+    "text": "Butter chicken is a rich tomato gravy dish with tender pieces of marinated chicken.",
+    "region": "Delhi",
+    "type": "Main Course"
+  },
+  {
+    "id": "18",
+    "text": "Lassi is a cold yogurt drink blended with sugar, salt, or fruits like mango.",
+    "region": "Punjab",
+    "type": "Drink"
+  }, 
+   {
+    "id": "19",
+    "text": "Momo is a type of South Asian dumpling popular in Nepal, filled with meat or vegetables and served with spicy chutney.",
+    "region": "Nepal",
+    "type": "Snack"
+  },
+  {
+    "id": "20",
+    "text": "Sel roti is a traditional homemade, sweet, ring-shaped rice bread from Nepal.",
+    "region": "Nepal",
+    "type": "Dessert"
+  },
+  {
+    "id": "21",
+    "text": "Hilsa curry is a traditional Bengali dish made with hilsa fish and mustard gravy.",
+    "region": "Bangladesh",
+    "type": "Main Course"
+  },
+  {
+    "id": "22",
+    "text": "Bhuna khichuri is a spiced rice and lentil dish often served with beef curry in Bangladesh.",
+    "region": "Bangladesh",
+    "type": "Main Course"
+  },
+  {
+    "id": "23",
+    "text": "Nihari is a slow-cooked stew of beef or lamb, eaten as breakfast in Pakistan.",
+    "region": "Pakistan",
+    "type": "Main Course"
+  },
+  {
+    "id": "24",
+    "text": "Chicken Karahi is a spicy curry cooked in a wok-like pan called a karahi, popular in Pakistan.",
+    "region": "Pakistan",
+    "type": "Main Course"
+  },
+  {
+    "id": "25",
+    "text": "Pad Thai is a stir-fried noodle dish with shrimp, peanuts, and tamarind sauce, one of Thailand's national dishes.",
+    "region": "Thailand",
+    "type": "Main Course"
+  },
+  {
+    "id": "26",
+    "text": "Tom Yum is a hot and sour Thai soup made with shrimp, lemongrass, and lime juice.",
+    "region": "Thailand",
+    "type": "Soup"
+  },
+  {
+    "id": "27",
+    "text": "Pho is a Vietnamese noodle soup consisting of broth, rice noodles, herbs, and meat.",
+    "region": "Vietnam",
+    "type": "Soup"
+  },
+  {
+    "id": "28",
+    "text": "Nasi Goreng is Indonesian-style fried rice often cooked with kecap manis, garlic, shallots, and chili.",
+    "region": "Indonesia",
+    "type": "Main Course"
+  },
+  {
+    "id": "29",
+    "text": "Rendang is a spicy meat dish slow-cooked in coconut milk and spices, originating from Indonesia.",
+    "region": "Indonesia",
+    "type": "Main Course"
+  },
+  {
+    "id": "30",
+    "text": "Nasi lemak is Malaysia's national dish consisting of fragrant rice cooked in coconut milk, served with sambal, anchovies, and egg.",
+    "region": "Malaysia",
+    "type": "Main Course"
+  },
+  {
+    "id": "31",
+    "text": "Adobo is a Filipino dish made by marinating meat in vinegar, soy sauce, and garlic, then simmering it.",
+    "region": "Philippines",
+    "type": "Main Course"
+  },
+  {
+    "id": "32",
+    "text": "Halo-halo is a Filipino dessert made from crushed ice, evaporated milk, and mixed ingredients like sweet beans, fruits, and jellies.",
+    "region": "Philippines",
+    "type": "Dessert"
+  }, 
+    {
+    "id": "33",
+    "text": "Peking duck is a famous Beijing dish featuring crispy roasted duck served with pancakes, hoisin sauce, and scallions.",
+    "region": "China",
+    "type": "Main Course"
+  },
+  {
+    "id": "34",
+    "text": "Kung Pao chicken is a spicy stir-fry dish made with chicken, peanuts, vegetables, and chili peppers.",
+    "region": "China",
+    "type": "Main Course"
+  },
+  {
+    "id": "35",
+    "text": "Mapo tofu is a Sichuan dish featuring soft tofu in a spicy chili and bean-based sauce, typically with minced pork.",
+    "region": "Sichuan, China",
+    "type": "Main Course"
+  },
+  {
+    "id": "36",
+    "text": "Xiao long bao are Chinese soup dumplings filled with meat and hot broth, typically served in a bamboo steamer.",
+    "region": "Shanghai",
+    "type": "Snack"
+  },
+  {
+    "id": "37",
+    "text": "Chow mein is a stir-fried noodle dish made with vegetables and sometimes meat or seafood.",
+    "region": "China",
+    "type": "Noodle"
+  },
+  {
+    "id": "38",
+    "text": "Hot and sour soup is a Chinese soup made with mushrooms, tofu, bamboo shoots, and egg, flavored with vinegar and white pepper.",
+    "region": "China",
+    "type": "Soup"
+  },
+  {
+    "id": "39",
+    "text": "Dim sum refers to a variety of small Chinese dishes served with tea, including dumplings, buns, and rolls.",
+    "region": "Cantonese, China",
+    "type": "Snack"
+  },
+  {
+    "id": "40",
+    "text": "Mooncake is a traditional Chinese pastry filled with lotus seed paste or red bean, eaten during the Mid-Autumn Festival.",
+    "region": "China",
+    "type": "Dessert"
+  }, 
+  {
+  "id": "41",
+  "text": "Kimchi is a traditional Korean side dish made from fermented vegetables, usually cabbage and radish, with chili pepper and garlic.",
+  "region": "Korea",
+  "type": "Side Dish"
+},
+{
+  "id": "42",
+  "text": "Bibimbap is a Korean mixed rice dish topped with sautéed vegetables, sliced meat, a fried egg, and chili paste.",
+  "region": "Korea",
+  "type": "Main Course"
+},
+{
+  "id": "43",
+  "text": "Tteokbokki is a popular Korean street food made of chewy rice cakes in a spicy red sauce.",
+  "region": "Korea",
+  "type": "Snack"
+}, 
+{
+  "id": "44",
+  "text": "Beef noodle soup is a beloved Taiwanese dish made with braised beef, vegetables, and noodles in a flavorful broth.",
+  "region": "Taiwan",
+  "type": "Soup"
+},
+{
+  "id": "45",
+  "text": "Lu rou fan is a classic Taiwanese comfort food of minced pork belly cooked in soy sauce, served over rice.",
+  "region": "Taiwan",
+  "type": "Main Course"
+},
+{
+  "id": "46",
+  "text": "Bubble tea is a Taiwanese drink made with tea, milk, and chewy tapioca pearls.",
+  "region": "Taiwan",
+  "type": "Drink"
+}, 
+{
+  "id": "47",
+  "text": "Char siu is a Cantonese-style barbecued pork known for its sweet and savory glaze.",
+  "region": "Hong Kong",
+  "type": "Main Course"
+},
+{
+  "id": "48",
+  "text": "Egg tarts are a popular Hong Kong dessert consisting of a flaky pastry crust filled with egg custard.",
+  "region": "Hong Kong",
+  "type": "Dessert"
+},
+{
+  "id": "49",
+  "text": "Wonton noodles are a Hong Kong dish made with thin egg noodles and wontons in a clear broth.",
+  "region": "Hong Kong",
+  "type": "Noodle"
+}, 
+{
+  "id": "50",
+  "text": "Meat pie is an iconic Australian dish consisting of a flaky pastry filled with minced meat and gravy.",
+  "region": "Australia",
+  "type": "Snack"
+},
+{
+  "id": "51",
+  "text": "Lamingtons are sponge cakes coated in chocolate and rolled in coconut, a popular Australian dessert.",
+  "region": "Australia",
+  "type": "Dessert"
+} ,
+{
+  "id": "52",
+  "text": "Pavlova is a meringue-based dessert topped with fresh fruit and cream, considered a national dish of New Zealand.",
+  "region": "New Zealand",
+  "type": "Dessert"
+},
+{
+  "id": "53",
+  "text": "Hangi is a traditional Māori method of cooking meat and vegetables in an underground oven.",
+  "region": "New Zealand",
+  "type": "Main Course"
+},
+{
+  "id": "54",
+  "text": "Palusami is a Polynesian dish of taro leaves filled with coconut cream and sometimes meat, baked in banana leaves.",
+  "region": "Samoa, South Pacific",
+  "type": "Main Course"
+},
+{
+  "id": "55",
+  "text": "Oka is a Samoan raw fish salad marinated in citrus and coconut milk, similar to ceviche.",
+  "region": "Samoa, South Pacific",
+  "type": "Appetizer"
+},
+{
+  "id": "56",
+  "text": "Lovo is a Fijian feast where food is wrapped in banana leaves and cooked in an earth oven.",
+  "region": "Fiji, South Pacific",
+  "type": "Main Course"
+},
+{
+  "id": "57",
+  "text": "Kokoda is a Fijian dish of raw fish marinated in lime juice and coconut milk, similar to ceviche.",
+  "region": "Fiji, South Pacific",
+  "type": "Appetizer"
+},
+{
+  "id": "58",
+  "text": "Poke is a Hawaiian dish of diced raw fish, typically seasoned with soy sauce and sesame oil.",
+  "region": "Hawaii, USA",
+  "type": "Appetizer"
+},
+{
+  "id": "59",
+  "text": "Spam musubi is a Hawaiian snack made of rice and Spam wrapped in seaweed.",
+  "region": "Hawaii, USA",
+  "type": "Snack"
+},
+{  "id": "60",
+  "text": "Loco moco is a Hawaiian dish consisting of rice topped with a hamburger patty, fried egg, and brown gravy.",
+  "region": "Hawaii, USA",
+  "type": "Main Course"
+},
+{
+  "id": "61",
+  "text": "Sushi is a Japanese dish of vinegared rice combined with seafood, vegetables, and sometimes tropical fruits.",
+  "region": "Japan",
+  "type": "Main Course"
+},
+{
+  "id": "62",
+  "text": "Ramen is a Japanese noodle soup dish with Chinese-style wheat noodles served in a meat or fish-based broth.",
+  "region": "Japan",
+  "type": "Main Course"
+},
+{
+  "id": "63",
+  "text": "Tempura is a Japanese dish of seafood or vegetables that have been battered and deep-fried.",
+  "region": "Japan",
+  "type": "Main Course"
+},
+{
+  "id": "64",
+  "text": "Miso soup is a traditional Japanese soup consisting of a stock called dashi into which softened miso paste is mixed.",
+  "region": "Japan",
+  "type": "Soup"
+},
+{
+  "id": "65",
+  "text": "Okonomiyaki is a savory Japanese pancake containing a variety of ingredients.",
+  "region": "Japan",
+  "type": "Main Course"
+},
+{
+  "id": "66",
+  "text": "Hummus is a Middle Eastern dip or spread made from cooked, mashed chickpeas blended with tahini, olive oil, lemon juice, and garlic.",
+  "region": "Middle East",
+  "type": "Appetizer"
+},
+{
+  "id": "67",
+  "text": "Falafel consists of deep-fried balls of ground chickpeas or fava beans, typically served in pita bread.",
+  "region": "Middle East",
+  "type": "Main Course"
+},
+{
+  "id": "68",
+  "text": "Shawarma is a Middle Eastern meat preparation where thin slices of lamb, chicken, or beef are stacked and roasted on a vertical rotisserie.",
+  "region": "Middle East",
+  "type": "Main Course"
+},
+{
+  "id": "69",
+  "text": "Tabbouleh is a Levantine vegetarian salad made of finely chopped parsley, tomatoes, mint, and bulgur.",
+  "region": "Middle East",
+  "type": "Salad"
+},
+{
+  "id": "70",
+  "text": "Baklava is a rich, sweet dessert pastry made of layers of filo filled with chopped nuts and sweetened with syrup or honey.",
+  "region": "Middle East",
+  "type": "Dessert"
+},
+{
+  "id": "71",
+  "text": "Buuz are Mongolian steamed dumplings filled with minced meat, typically mutton or beef.",
+  "region": "Mongolia",
+  "type": "Main Course"
+},
+{
+  "id": "72",
+  "text": "Khorkhog is a Mongolian barbecue dish where meat is cooked with hot stones inside a sealed container.",
+  "region": "Mongolia",
+  "type": "Main Course"
+},
+{
+  "id": "73",
+  "text": "Airag is a traditional Mongolian alcoholic drink made from fermented mare's milk.",
+  "region": "Mongolia",
+  "type": "Beverage"
+},
+{
+  "id": "74",
+  "text": "Boortsog are Mongolian deep-fried cookies often served with tea or used as a dessert.",
+  "region": "Mongolia",
+  "type": "Dessert"
+},
+{
+  "id": "75",
+  "text": "Suutei tsai is a traditional Mongolian milk tea made with green tea, milk, water, and salt.",
+  "region": "Mongolia",
+  "type": "Beverage"
+},
+  {
+    "id": "76",
+    "name": "Haleem",
+    "category": "Main Course",
+    "origin": "Lahore, Pakistan",
+    "text": "Haleem is a slow-cooked meat and lentil stew popular during Ramadan in Lahore. This traditional dish is prepared by simmering beef or lamb with split peas, lentils, and aromatic spices including cinnamon, cardamom, and cumin for several hours until the meat becomes extremely tender and the lentils break down into a thick, rich consistency. The ingredients are traditionally ground together using a wooden pestle to create a uniform texture. Haleem is served with fresh naan bread, sliced onions, and lime juice.",
+    "region": "Lahore, Pakistan",
+    "type": "Main Course",
+    "ingredients": "Beef or lamb, split peas, red lentils, wheat grains, cinnamon, cardamom, cumin, ginger, garlic, onions, ghee, salt",
+    "preparation_method": "Slow-simmer all ingredients for 8-10 hours until meat and lentils break down into uniform paste; traditionally ground with wooden pestle; served with naan, onions, and lime",
+    "nutritional_highlights": "High in protein (25-30g per serving), iron from lentils, B vitamins, sustained energy release from slow-cooking",
+    "cultural_significance": "Sacred Ramadan tradition in Lahore, commonly prepared in large quantities for communal sharing and breaking fast, symbol of family unity",
+    "dietary_classification": "Contains gluten (wheat grains), not vegetarian, can be made halal",
+    "interesting_facts": "Ancient Mughal dish that has been part of South Asian cuisine for centuries; each family has its own recipe; traditionally cooked overnight in large communal pots"
+  },
+  {
+    "id": "77",
+    "name": "Karahi Gosht",
+    "category": "Main Course",
+    "origin": "Lahore, Pakistan",
+    "text": "Karahi Gosht is a vibrant, aromatic meat curry traditionally cooked in a round-bottomed wok-like pan called a karahi, which gives the dish its distinctive name. This Lahore specialty features tender pieces of lamb or beef cooked with fresh tomatoes, green peppers, and onions, combined with warming spices like cumin, coriander, and garam masala. The dry curry texture and intense flavors represent authentic Lahore street food culture. Karahi Gosht is quick to prepare and is commonly served at family dinners and celebrations throughout Lahore.",
+    "region": "Lahore, Pakistan",
+    "type": "Main Course",
+    "ingredients": "Lamb or beef chunks, tomatoes, green bell peppers, onions, ginger, garlic, garam masala, cumin, coriander, turmeric, red chili powder, ghee, salt, fresh cilantro",
+    "preparation_method": "Heat ghee in karahi pan on high heat; sauté onions until golden; add ginger-garlic paste; brown meat pieces; add spices and tomatoes; cook uncovered 20-25 minutes until meat is tender and curry is dry; garnish with cilantro",
+    "nutritional_highlights": "Rich in protein (28-32g per serving), iron, B vitamins; high in antioxidants from spices; moderate fat content when cooked with measured ghee",
+    "cultural_significance": "Iconic Lahore street food and family staple; represents modern Pakistani urban food culture; often prepared for celebrations, festivals, and casual family meals",
+    "dietary_classification": "Not vegetarian, contains dairy (ghee), can be made halal",
+    "interesting_facts": "Named after the specific cooking vessel (karahi); traditionally cooked in front of customers at street food vendors for authenticity and freshness; became popular in Pakistan during the 1980s"
+  },
+  {
+    "id": "78",
+    "name": "Seekh Kebab",
+    "category": "Appetizer",
+    "origin": "Lahore, Pakistan",
+    "text": "Seekh Kebab is a popular Lahore appetizer consisting of spiced ground meat molded onto long metal skewers and grilled over charcoal. The minced meat mixture includes onions, green chilies, ginger, garlic, and aromatic spices such as cumin and coriander. After grilling, the exterior becomes smoky and charred while the interior remains juicy and flavorful. Seekh Kebabs are typically served with fresh lime wedges, sliced onions, and mint chutney at gatherings, weddings, and street food vendors throughout Lahore.",
+    "region": "Lahore, Pakistan",
+    "type": "Appetizer",
+    "ingredients": "Ground lamb or beef, onions, green chilies, ginger, garlic, cumin, coriander, garam masala, salt, fresh cilantro, mint, oil for basting",
+    "preparation_method": "Mix ground meat with finely chopped onions, green chilies, ginger-garlic paste, and spices; shape mixture around flat metal skewers; grill over charcoal fire 10-12 minutes, turning occasionally and basting with oil; serve with lemon wedges, onions, and mint chutney",
+    "nutritional_highlights": "High protein content (20-24g per skewer), iron, B vitamins; moderate fat; low carbohydrates",
+    "cultural_significance": "Essential wedding and celebration appetizer; symbol of Lahore's social gatherings and hospitality; served at engagements, festivals, and formal events",
+    "dietary_classification": "Not vegetarian, gluten-free, contains meat",
+    "interesting_facts": "Charcoal grilling gives distinctive smoky flavor; traditionally prepared by specialized kebab makers who pass recipes through generations; popular at Lahore's famous Badshahi food stalls"
+  },
+  {
+    "id": "79",
+    "name": "Paya Gosht",
+    "category": "Main Course",
+    "origin": "Lahore, Pakistan",
+    "text": "Paya Gosht is a traditional Lahore delicacy made from animal trotters slow-cooked overnight with meat in a rich, aromatic gravy infused with ginger, garlic, and warming spices. The trotters become gelatinous and incredibly tender, absorbing all the flavors from the spice blend. This dish is particularly popular during winter months and is often consumed at dawn during Ramadan to provide sustained energy throughout the fasting day. Paya Gosht represents the resourcefulness and creativity of Lahore's culinary traditions, utilizing all parts of the animal.",
+    "region": "Lahore, Pakistan",
+    "type": "Main Course",
+    "ingredients": "Animal trotters (goat or beef), meat pieces, ginger, garlic, turmeric, cinnamon, cardamom, bay leaves, cumin, coriander, red chili powder, ghee, onions, salt, water",
+    "preparation_method": "Blanch trotters to remove impurities; slow-cook with meat and spices over 8-10 hours in heavy-bottomed pot on very low heat; long cooking breaks down collagen into gelatin creating luxurious texture; served with naan and fresh onions",
+    "nutritional_highlights": "Rich in collagen for joint health, high protein (22-26g per serving), calcium and minerals from bones, gelatin supports digestive health, iron content",
+    "cultural_significance": "Sacred Ramadan pre-dawn meal (Sehri) tradition; symbol of Lahore's resourceful cuisine; warm, comforting dish for winter; believed to have healing and medicinal properties in traditional medicine",
+    "dietary_classification": "Not vegetarian, contains animal products, high in gelatin and collagen",
+    "interesting_facts": "Must be cooked overnight to properly soften trotters; excessive heat prevents proper gelatinization; served at specialized Lahore restaurants; particularly popular in old city areas"
+  },
+  {
+    "id": "80",
+    "name": "Keema Paratha",
+    "category": "Main Course",
+    "origin": "Lahore, Pakistan",
+    "text": "Keema Paratha is a traditional Lahore breakfast dish consisting of flatbread filled with spiced ground meat cooked with onions, green chilies, ginger, and aromatic spices. The dough is rolled with the seasoned meat filling inside, then cooked on a griddle until golden and crispy on the outside while remaining soft inside. Keema Paratha is a staple breakfast food in Lahore households and represents everyday Pakistani home cooking. The dish is quick to prepare yet deeply satisfying, often served with yogurt, fresh pickles, and sliced onions.",
+    "region": "Lahore, Pakistan",
+    "type": "Main Course",
+    "ingredients": "Whole wheat flour, ground lamb or beef, onions, green chilies, ginger, garlic, garam masala, turmeric, cumin, coriander, salt, ghee, fresh cilantro",
+    "preparation_method": "Prepare dough with flour, salt, and water; let rest 30 minutes; fry ground meat with onions and spices until cooked (8-10 minutes); roll dough thin, add meat filling, fold and roll again; cook on griddle with ghee over medium-high heat 3-4 minutes per side until golden; serve with yogurt and pickles",
+    "nutritional_highlights": "Balanced nutrition with protein (18-22g per paratha), carbohydrates from wheat, B vitamins, iron from meat and wheat",
+    "cultural_significance": "Essential Lahore breakfast staple passed down through generations; represents quick yet nutritious home-cooked meal; eaten in virtually every Lahore household",
+    "dietary_classification": "Contains gluten and wheat, not vegetarian, contains meat and ghee (dairy)",
+    "interesting_facts": "Can be made ahead and reheated, popular with schoolchildren for breakfast; sold by street vendors; simple recipe versatile for different meat preferences"
+  },
+  {
+    "id": "81",
+    "name": "Spinach and Lentil Soup",
+    "category": "Soup",
+    "origin": "Mediterranean/Global",
+    "text": "Spinach and Lentil Soup is a highly nutritious healthy dish combining fresh spinach with red lentils, creating a protein-rich meal packed with essential nutrients. One serving provides approximately 18 grams of plant-based protein from lentils and 3 grams of fiber. Spinach contributes iron (approximately 3.2mg per cup), calcium (about 99mg per cup), and vitamins A, C, and K. The combination of vitamin C from spinach enhances iron absorption from the lentils, making this dish particularly beneficial for vegetarians.",
+    "region": "Global",
+    "type": "Soup",
+    "ingredients": "Red lentils, fresh spinach, vegetable broth, garlic, onion, cumin, turmeric, lemon juice, olive oil, salt, pepper, fresh cilantro",
+    "preparation_method": "Sauté onions and garlic in olive oil for 2-3 minutes; add red lentils, turmeric, and vegetable broth; simmer 15 minutes until lentils soften; add fresh spinach and simmer 5 more minutes; season with cumin, lemon juice, salt, and pepper; blend partially or leave chunky as preferred",
+    "nutritional_highlights": "18g plant-based protein per serving, 3g fiber, iron (3.2mg per cup spinach), calcium (99mg per cup spinach), vitamins A, C, K; vitamin C enhances iron absorption; only 120 calories per serving",
+    "cultural_significance": "Popular Middle Eastern and Mediterranean comfort soup; nutritionally celebrated in plant-based diets; widely served in health-conscious restaurants worldwide",
+    "dietary_classification": "Vegetarian, vegan, gluten-free, dairy-free, high-protein plant-based",
+    "interesting_facts": "Ancient soup known for thousands of years in Mediterranean cuisine; iron bioavailability enhanced when consumed with vitamin C; considered superfood for its nutritional density"
+  },
+  {
+    "id": "82",
+    "name": "Grilled Salmon with Quinoa",
+    "category": "Main Course",
+    "origin": "Global/Scandinavian-South American fusion",
+    "text": "Grilled Salmon with Quinoa is an excellent healthy meal combining omega-3 rich fatty fish with a complete protein grain. Salmon provides approximately 25 grams of high-quality protein and 2.3 grams of omega-3 fatty acids per 100g serving, which support cardiovascular and brain health. Quinoa contains all nine essential amino acids, providing 8 grams of protein per cooked cup. Together, this meal provides approximately 35 grams of protein, healthy fats, and complex carbohydrates.",
+    "region": "Global",
+    "type": "Main Course",
+    "ingredients": "Salmon fillet, quinoa, lemon, fresh herbs (dill, parsley), olive oil, garlic, salt, pepper, vegetables (broccoli or asparagus optional)",
+    "preparation_method": "Rinse quinoa and cook in vegetable broth for 15 minutes; season salmon with lemon, herbs, salt, and pepper; preheat grill to 400°F; grill salmon skin-side up 12-15 minutes until flesh flakes easily; serve salmon over fluffy quinoa with fresh vegetables",
+    "nutritional_highlights": "25g high-quality protein from salmon per 100g, 8g complete protein from quinoa (contains all 9 amino acids), 2.3g omega-3 fatty acids per 100g salmon, 35g total protein per plate, supports heart and brain health, 320 calories per serving",
+    "cultural_significance": "Modern superfood bowl trending in healthy restaurants worldwide; represents contemporary nutritional science applied to traditional cuisines; popular in fitness and wellness communities",
+    "dietary_classification": "Gluten-free, dairy-free, high-protein, omega-3 rich, low-carb option",
+    "interesting_facts": "Omega-3 fatty acids reduce inflammation and support mental health; quinoa complete protein makes it ideal for vegetarians; salmon grilling brings out natural oils enhancing flavor and health benefits"
+  },
+  {
+    "id": "83",
+    "name": "Greek Salad with Chickpeas",
+    "category": "Salad",
+    "origin": "Mediterranean/Greece",
+    "text": "Greek Salad with Chickpeas is a nutrient-dense healthy dish combining fresh vegetables with plant-based protein. The salad includes lettuce, tomatoes, cucumbers, bell peppers, and red onions providing vitamins including folate (from lettuce), vitamin C (from peppers and tomatoes), and potassium. Chickpeas add 15 grams of protein and 12 grams of fiber per cooked cup, promoting satiety and digestive health. Feta cheese contributes calcium and probiotic benefits.",
+    "region": "Mediterranean",
+    "type": "Salad",
+    "ingredients": "Romaine lettuce, cherry tomatoes, cucumber, red bell pepper, red onion, chickpeas (canned or cooked), Kalamata olives, feta cheese, extra virgin olive oil, red wine vinegar, oregano, salt, pepper, lemon",
+    "preparation_method": "Chop lettuce, tomatoes, cucumber, peppers, and onions; drain and rinse canned chickpeas; combine vegetables and chickpeas in large bowl; add Kalamata olives and crumbled feta; prepare dressing by whisking olive oil, vinegar, oregano, salt, and pepper; toss salad just before serving to maintain crisp texture",
+    "nutritional_highlights": "15g plant-based protein per serving from chickpeas, 12g dietary fiber, 140mg calcium per ounce from feta, high antioxidants (lycopene from tomatoes, vitamin C from peppers), folate from lettuce, potassium from vegetables, only 250 calories per serving",
+    "cultural_significance": "Ancient Mediterranean staple representing healthy lifestyle in Greece; considered one of world's healthiest dishes by nutritionists; symbol of Mediterranean diet longevity benefits",
+    "dietary_classification": "Vegetarian, can be vegan if feta omitted, gluten-free, dairy-free option available",
+    "interesting_facts": "Mediterranean diet documented to reduce heart disease risk by 30%; chickpeas are ancient legume cultivated for 7,000 years; feta fermentation process creates beneficial probiotics"
+  },
+  {
+    "id": "84",
+    "name": "Steamed Broccoli with Brown Rice",
+    "category": "Main Course",
+    "origin": "Global/Macrobiotic",
+    "text": "Steamed Broccoli with Brown Rice is a simple, nutrient-packed healthy meal offering complete nutrition. Brown rice provides 5 grams of protein and 3.5 grams of fiber per cooked cup, along with B vitamins and magnesium supporting energy production. Broccoli contributes 3.7 grams of protein and 2.4 grams of fiber per cup raw, along with vitamin C (approximately 89mg per cup), folate, and cancer-fighting sulforaphane compounds.",
+    "region": "Global",
+    "type": "Main Course",
+    "ingredients": "Brown rice, fresh broccoli florets, olive oil, garlic, sea salt, black pepper, fresh lemon, optional sesame seeds or ginger",
+    "preparation_method": "Rinse brown rice and cook in 1:2.5 water ratio for 30-40 minutes until tender; while rice cooks, cut broccoli into florets; steam broccoli for 5-7 minutes until tender-crisp; heat olive oil in pan with minced garlic for 1 minute; toss steamed broccoli with garlic oil, season with salt, pepper, and squeeze of lemon; serve alongside brown rice",
+    "nutritional_highlights": "Total 8.7g protein per serving (5g rice, 3.7g broccoli), 5.9g dietary fiber, vitamin C (89mg from broccoli), folate, magnesium, B vitamins, sulforaphane (cancer-fighting compound), only 280 calories per plate, glycemic index 68 (medium), excellent for sustained energy",
+    "cultural_significance": "Staple of macrobiotic cuisine and Asian health traditions; represents balance in Yin-Yang philosophy of eating; widely recommended by nutritionists and health practitioners",
+    "dietary_classification": "Vegetarian, vegan, gluten-free, dairy-free, low-fat, whole-grain",
+    "interesting_facts": "Sulforaphane in broccoli activates cancer-fighting enzymes when raw or lightly cooked; brown rice retains germ and bran providing maximum nutrition; steam cooking preserves vitamin C better than boiling"
+  },
+  {
+    "id": "85",
+    "name": "Grilled Chicken Breast with Sweet Potato",
+    "category": "Main Course",
+    "origin": "Global/American fitness cuisine",
+    "text": "Grilled Chicken Breast with Sweet Potato is a lean, protein-rich healthy meal supporting muscle development and weight management. Chicken breast contains approximately 31 grams of protein per 100g serving with minimal fat, making it ideal for fitness-conscious individuals. Sweet potatoes provide complex carbohydrates, approximately 3.6 grams of fiber per medium potato, and beta-carotene (vitamin A) supporting eye health.",
+    "region": "Global",
+    "type": "Main Course",
+    "ingredients": "Chicken breast, sweet potatoes, olive oil, lemon, garlic, rosemary or thyme, salt, pepper, optional paprika or cayenne",
+    "preparation_method": "Season chicken breasts with herbs, salt, and pepper; preheat grill to 375°F; grill 15-20 minutes until internal temperature reaches 165°F (check with meat thermometer); simultaneously bake sweet potatoes at 400°F for 45-50 minutes until fork-tender; slice chicken and serve alongside sweet potato; drizzle with olive oil and lemon",
+    "nutritional_highlights": "31g lean protein per 100g chicken (40g per serving), complex carbohydrates from sweet potato, 3.6g fiber per medium potato, 1000+ IU beta-carotene (vitamin A) per potato, minimal saturated fat, only 350 calories per plate, perfect 4:1 protein to carb ratio for muscle recovery",
+    "cultural_significance": "Cornerstone of sports nutrition and fitness culture worldwide; represents clean eating movement; popular meal prep choice for athletes and bodybuilders",
+    "dietary_classification": "Gluten-free, dairy-free, high-protein, low-fat, paleo-friendly",
+    "interesting_facts": "Grilling preserves more nutrients than boiling; sweet potato resistant starch increases when cooled, aiding digestion; combination perfectly supports post-workout muscle recovery and repair; meal prep staple that lasts 4-5 days refrigerated"
+  },
+  {
+    "id": "86",
+    "name": "Risotto",
+    "category": "Main Course",
+    "origin": "Northern Italy (Piedmont and Lombardy)",
+    "text": "Risotto is an Italian rice dish prepared through a specific cooking method that creates a creamy texture. Arborio or Carnaroli rice is first toasted in butter and onions for 2-3 minutes, then white wine is added and absorbed. Warm vegetable or chicken broth is added gradually in small amounts, approximately 1/2 cup at a time, with constant stirring after each addition until the liquid is absorbed. The continuous stirring releases starch from the rice, creating natural creaminess without heavy cream. Butter and Parmesan cheese are stirred in at the end.",
+    "region": "Italy",
+    "type": "Main Course",
+    "ingredients": "Arborio or Carnaroli rice, onion, garlic, white wine, vegetable or chicken broth, butter, Parmesan cheese, salt, pepper, saffron optional",
+    "preparation_method": "Heat broth in separate pot; in large pan, melt 2 tbsp butter and sauté onion and garlic 2-3 minutes; add rice and toast 2-3 minutes; add white wine and stir until absorbed; add broth 1/2 cup at a time while stirring constantly; wait until liquid is absorbed before adding next portion; continue for 18-20 minutes until rice is creamy but grains hold shape (al dente); stir in 2 tbsp butter and 1/2 cup grated Parmesan at end; season with salt and pepper",
+    "nutritional_highlights": "Medium-grain rice provides carbohydrates and energy, butter adds fat-soluble vitamins A, D, E; Parmesan adds calcium (400mg per cup) and protein (10g per ounce), approximately 400 calories per serving, comfort food with balanced macronutrients",
+    "cultural_significance": "Iconic Northern Italian dish dating back to Renaissance; Risotto alla Milanese is golden with saffron and served at formal Italian dinners; represents Italian cooking philosophy of technique and quality ingredients; UNESCO recognized as intangible cultural heritage",
+    "dietary_classification": "Vegetarian (check broth), contains dairy, contains gluten in traditional preparation, can be adapted for dietary restrictions",
+    "interesting_facts": "Arborio rice selected for high starch content creating creaminess through patient stirring; constant stirring is non-negotiable—rushing results in mushy rice; risotto represents slow food movement philosophy; each family in Italy has regional variation"
+  },
+  {
+    "id": "87",
+    "name": "Tacos",
+    "category": "Main Course",
+    "origin": "Mexico (Mesoamerican ancient roots)",
+    "text": "Tacos are a popular Mexican street food prepared by filling small corn or flour tortillas with seasoned meat cooked using a specific method: ground beef or shredded chicken is cooked in a skillet with onions and garlic until browned, then taco seasoning (chili powder, cumin, oregano, and red pepper flakes) is added along with a small amount of water and simmered for 5-10 minutes. The cooked meat is then placed in warmed tortillas and topped with fresh toppings.",
+    "region": "Mexico",
+    "type": "Main Course",
+    "ingredients": "Ground beef or shredded chicken, corn or flour tortillas, onion, garlic, chili powder, cumin, oregano, red pepper flakes, water, salt, lettuce, tomatoes, onion, shredded cheese, sour cream, salsa, cilantro",
+    "preparation_method": "Brown ground beef or chicken in skillet with onions and garlic over medium-high heat 4-5 minutes; add chili powder, cumin, oregano, and red pepper flakes; add 1/4 cup water and simmer 5-10 minutes until meat is well-coated and moisture reduces; warm tortillas on griddle or over flame; fill tortillas with seasoned meat; top with lettuce, tomatoes, cheese, sour cream, and salsa; serve immediately with lime wedges",
+    "nutritional_highlights": "Protein from meat (15-20g per taco), carbohydrates from tortilla, fiber from vegetables and corn tortillas, zinc and B vitamins from beef, capsaicin from spices aids metabolism, approximately 250-300 calories per taco, customizable for nutritional needs",
+    "cultural_significance": "Ancient Aztec food with 500+ year heritage; street food symbol of Mexican culture and cuisine; represents food democracy where everyone enjoys tacos; iconic symbol of Mexico worldwide",
+    "dietary_classification": "Can be vegetarian with bean filling, gluten-free with corn tortillas, dairy-free without cheese and sour cream, high-protein with meat",
+    "interesting_facts": "Tacos originated during Aztec era, originally filled with fish; each Mexican region has unique taco tradition (al pastor, carnitas, barbacoa, etc.); taco shell typically contains 12 corn kernels; stands as most consumed food in Mexico with billions eaten annually"
+  },
+  {
+    "id": "88",
+    "name": "Coq au Vin",
+    "category": "Main Course",
+    "origin": "French Burgundy region",
+    "text": "Coq au Vin is a classic French braised chicken dish prepared by searing chicken pieces in butter and bacon until golden, then removing them and sautéing onions, carrots, and mushrooms. The chicken is returned to the pot with red wine, beef broth, tomato paste, and aromatic herbs including thyme and bay leaves. The pot is covered and simmered in a 350°F oven for 1.5-2 hours until the chicken is very tender. Pearl onions are often added near the end of cooking along with additional mushrooms.",
+    "region": "France",
+    "type": "Main Course",
+    "ingredients": "Chicken pieces, bacon, pearl onions, mushrooms, carrots, garlic, red wine (Burgundy), beef broth, tomato paste, thyme, bay leaf, butter, salt, pepper, flour",
+    "preparation_method": "Cut bacon into lardons and cook until crispy; remove bacon and reserve; sear chicken pieces in bacon fat until golden 3-4 minutes per side; remove chicken; sauté onions, carrots, garlic in same pot 5 minutes; dust with flour and stir 1 minute; add red wine and beef broth; return chicken and bacon; add tomato paste, thyme, bay leaf; cover and braise in 350°F oven 1.5-2 hours until chicken very tender; add pearl onions and mushrooms in last 30 minutes; season with salt and pepper",
+    "nutritional_highlights": "High protein from chicken (25-30g per serving), iron from red wine and chicken, B vitamins, antioxidants from red wine (resveratrol), approximately 450 calories per serving with sauce, rich in collagen from braising",
+    "cultural_significance": "Heritage French dish from Burgundy region with over 500-year history; represents French culinary tradition and rustic elegance; considered pinnacle of French home cooking; UNESCO recognized French gastronomic meal as intangible cultural heritage",
+    "dietary_classification": "Not vegetarian, contains alcohol (wine), contains dairy (butter), gluten if thickened with flour, can be made gluten-free with cornstarch",
+    "interesting_facts": "Traditionally made with tough rooster bird slowly braised until tender; Julia Child popularized recipe in America through 'Mastering the Art of French Cooking'; long braising breaks down collagen into gelatin creating silky sauce; red wine acts as both flavor and tenderizer"
+  },
+  {
+    "id": "89",
+    "name": "Paella",
+    "category": "Main Course",
+    "origin": "Spain (Valencia region)",
+    "text": "Paella is a Spanish rice dish prepared in a wide, shallow pan using a traditional cooking method: saffron threads are steeped in warm broth to develop color and flavor, then onions and garlic are sautéed in olive oil for 2-3 minutes. Short-grain rice (typically bomba or paella rice) is added and toasted for 2-3 minutes, then the saffron broth is added all at once and brought to a boil. The heat is then reduced, and the dish simmers uncovered for 18-20 minutes without stirring, allowing a flavorful crust called socarrat to form on the bottom.",
+    "region": "Spain",
+    "type": "Main Course",
+    "ingredients": "Bomba or paella rice, saffron threads, seafood (shrimp, mussels, clams) or chicken, onion, garlic, bell pepper, tomatoes, peas, vegetable or seafood broth, white wine, olive oil, paprika, parsley, lemon, salt, pepper",
+    "preparation_method": "Steep saffron threads in 1/4 cup warm broth; heat broth separately; heat olive oil in wide paella pan; sauté onion, garlic, and bell pepper 3-4 minutes; add rice and toast 2-3 minutes while stirring; add saffron broth and remaining broth all at once; bring to boil; add seafood/chicken; reduce heat and simmer uncovered 18-20 minutes without stirring until rice is tender and crust (socarrat) forms on bottom; add peas in last 5 minutes; garnish with fresh parsley and lemon wedges",
+    "nutritional_highlights": "Complete meal with carbohydrates from rice, protein from seafood/chicken (20-25g per serving), antioxidants from saffron, lycopene from tomatoes, minerals from shellfish, approximately 450 calories per serving, balanced nutrition",
+    "cultural_significance": "Ancient Spanish dish representing Valencia region's agricultural heritage; UNESCO recognized Spanish Mediterranean diet and paella tradition as intangible cultural heritage; symbol of Spanish hospitality and celebration; represents thousands-year food history",
+    "dietary_classification": "Can be made vegetarian with vegetables only, contains seafood/meat options, contains wine (cooks off), gluten-free with rice, dairy-free, can be adapted for allergies",
+    "interesting_facts": "Paella originated as peasant dish using available ingredients; socarrat (crispy bottom layer) considered most flavorful part; saffron is world's most expensive spice at $10-15 per gram; traditional paella cooked in open-air over wood fire; each region of Spain has unique paella variation"
+  },
+  {
+    "id": "90",
+    "name": "Laksa",
+    "category": "Soup",
+    "origin": "Malaysia (Penang and Kuala Lumpur regions)",
+    "text": "Laksa is a beloved Malaysian noodle soup combining rich coconut broth with aromatic spices and chewy noodles. The broth is prepared by simmering coconut milk with a spice paste made from shallots, garlic, galangal, turmeric, chilies, and shrimp paste for complex depth of flavor. The cooking method involves toasting dried chilies and spices to release essential oils, then grinding them into a paste. This spice paste is fried in coconut oil until fragrant, then combined with coconut milk and broth, and simmered to allow flavors to meld.",
+    "region": "Malaysia",
+    "type": "Soup",
+    "ingredients": "Rice noodles, dried red chilies, shallots, garlic, galangal, turmeric, shrimp paste (belacan), coconut milk, vegetable or chicken broth, coconut oil, bean sprouts, hard-boiled eggs, fried tofu, fish cakes, fresh cilantro, mint, lime, salt",
+    "preparation_method": "Toast dried chilies and spices in dry pan 1-2 minutes; grind with garlic, shallots, and galangal into paste; heat coconut oil and fry spice paste 2-3 minutes until fragrant; add coconut milk and broth; simmer 10-15 minutes to meld flavors; cook rice noodles separately according to package directions; place noodles in serving bowls; pour hot laksa broth over noodles; top with bean sprouts, halved eggs, tofu, fish cakes, herbs, and serve with lime wedges",
+    "nutritional_highlights": "Coconut milk provides medium-chain triglycerides (MCTs), noodles offer carbohydrates, hard-boiled eggs add protein (6g per egg), turmeric contains curcumin with anti-inflammatory properties, approximately 380 calories per serving, warming comfort food with medicinal spices",
+    "cultural_significance": "National treasure of Malaysia representing multicultural heritage (Chinese, Malay, Indian influences); iconic Malaysian dish recognized worldwide; symbol of street food culture in Southeast Asia; generations of family recipes passed down",
+    "dietary_classification": "Contains gluten in noodles (rice noodle alternative available), contains shellfish (shrimp paste), dairy-free, can be vegetarian without fish cakes, adjustable spice level",
+    "interesting_facts": "Two main types: Assam laksa (tangy tamarind-based, Penang style) and Coconut laksa (creamy, Kuala Lumpur style); complex flavor from combination of Indian, Chinese, and Malay cuisines; street food staple sold by specialized vendors with family recipes dating back 100+ years; turmeric's curcumin studied for health benefits in modern medicine"
+  }
+
+]

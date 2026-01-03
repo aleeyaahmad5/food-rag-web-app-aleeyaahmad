@@ -1,0 +1,455 @@
+{
+  "test_date": "2025-12-14T00:13:21.421319",
+  "system": "Cloud RAG (Upstash Vector + Groq)",
+  "total_queries": 15,
+  "summary": {
+    "total_queries": 15,
+    "cloud_performance": {
+      "avg_retrieval_ms": 309.65,
+      "avg_generation_ms": 902.53,
+      "avg_total_ms": 1212.18,
+      "min_total_ms": 689.8,
+      "max_total_ms": 3768.93
+    },
+    "local_baseline": {
+      "avg_embedding_ms": 2192.06,
+      "avg_retrieval_ms": 4.04,
+      "avg_generation_ms": 21493.33,
+      "avg_total_ms": 23690.74
+    },
+    "improvement": {
+      "retrieval_percent": 85.9,
+      "generation_percent": 95.8,
+      "total_percent": 94.9
+    },
+    "by_category": {
+      "semantic_similarity": {
+        "avg_ms": 1415.57,
+        "count": 3
+      },
+      "multi_criteria": {
+        "avg_ms": 894.25,
+        "count": 3
+      },
+      "nutritional": {
+        "avg_ms": 759.23,
+        "count": 3
+      },
+      "cultural_exploration": {
+        "avg_ms": 800.04,
+        "count": 3
+      },
+      "cooking_method": {
+        "avg_ms": 2191.82,
+        "count": 3
+      }
+    }
+  },
+  "detailed_results": [
+    {
+      "query": "healthy Mediterranean options",
+      "category": "semantic_similarity",
+      "answer": "Based on the provided context, the healthy Mediterranean options are:\n\n1. **Mediterranean Grilled Fish with Herbs**: This dish is a heart-healthy dish that showcases the simple yet elegant cooking philosophy of Mediterranean cuisine. It features omega-3 rich fish, heart-healthy olive oil, and antioxidant-packed herbs, making it a nutritionally exceptional meal.\n\n2. **Greek Salad with Chickpeas**: Although not a traditional Mediterranean dish, this salad combines fresh vegetables with plant-based protein and cheese, which is a staple in Mediterranean cuisine, providing a nutrient-dense healthy option.\n\nThese options align with the Mediterranean diet, which has been extensively studied and proven to reduce cardiovascular disease risk by up to 30%.",
+      "retrieved_docs": [
+        [
+          "102",
+          0.8587829,
+          "Mediterranean Grilled Fish with Herbs is a heart-h"
+        ],
+        [
+          "83",
+          0.85576177,
+          "Greek Salad with Chickpeas is a nutrient-dense hea"
+        ],
+        [
+          "99",
+          0.81079423,
+          "Buddha Bowl is a nourishing modern health food phe"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 798.08,
+        "generation_ms": 787.53,
+        "total_ms": 1585.61
+      }
+    },
+    {
+      "query": "light and refreshing summer dishes",
+      "category": "semantic_similarity",
+      "answer": "Based on the provided context, it seems that you're looking for light and refreshing summer dishes. While the context doesn't explicitly mention summer dishes, we can make an educated guess about what type of dishes might be suitable for the season.\n\nConsidering the context, I would recommend the Mediterranean Grilled Fish with Herbs as a light and refreshing summer dish. The combination of grilled fish, extra virgin olive oil, lemon juice, and aromatic herbs like oregano, thyme, and rosemary makes for a perfect summer meal. The dish is not only flavorful but also light and easy to digest, making it suitable for hot summer days.\n\nAdditionally, this dish aligns with the Mediterranean diet, which emphasizes whole, unprocessed foods and has been shown to reduce cardiovascular disease risk. So, it's a great option for a light and refreshing summer meal that's also good for you.",
+      "retrieved_docs": [
+        [
+          "104",
+          0.79682064,
+          "Southern Mac and Cheese is a beloved American comf"
+        ],
+        [
+          "102",
+          0.7960149,
+          "Mediterranean Grilled Fish with Herbs is a heart-h"
+        ],
+        [
+          "93",
+          0.7948957,
+          "Moussaka is a quintessential Greek casserole that "
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 288.57,
+        "generation_ms": 1555.53,
+        "total_ms": 1844.1
+      }
+    },
+    {
+      "query": "warm comforting winter meals",
+      "category": "semantic_similarity",
+      "answer": "Based on the provided context, the following are warm comforting winter meals:\n\n1. **Southern Mac and Cheese**: A rich, creamy, soul-satisfying dish featuring a homemade cheese sauce made from a butter-flour roux, whole milk, and sharp cheddar cheese, mixed with pasta, topped with more cheese and buttered breadcrumbs, then baked until golden and bubbly.\n\n2. **Chicken Pot Pie**: The ultimate American comfort food, featuring tender chunks of chicken and mixed vegetables swimming in a rich, creamy sauce, all encased in a flaky, golden pastry crust. This hearty dish is perfect for a warm and comforting winter meal.\n\nThese meals are ideal for cold winter days as they offer a sense of warmth and comfort through their rich, creamy sauces and satisfying, filling ingredients.",
+      "retrieved_docs": [
+        [
+          "104",
+          0.7934495,
+          "Southern Mac and Cheese is a beloved American comf"
+        ],
+        [
+          "101",
+          0.7915937,
+          "Overnight Oats with Chia Seeds is a convenient, no"
+        ],
+        [
+          "106",
+          0.7880167,
+          "Chicken Pot Pie is the ultimate American comfort f"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 284.21,
+        "generation_ms": 532.8,
+        "total_ms": 817.01
+      }
+    },
+    {
+      "query": "spicy vegetarian Asian dishes",
+      "category": "multi_criteria",
+      "answer": "Considering the context provided, there isn't a specific mention of spicy vegetarian Asian dishes. However, based on the information given, we can infer some potential options.\n\nFrom the description of Laksa, it's clear that the dish often includes shrimp paste, which is not vegetarian. However, if you were to modify the Laksa recipe to exclude the shrimp paste, you could create a spicy, coconut-based broth that would be suitable for a vegetarian version.\n\nMassaman Curry, on the other hand, can be adapted to be vegetarian by replacing the beef or chicken with plant-based alternatives, such as tofu or jackfruit. The original recipe features warming spices commonly found in Middle Eastern cuisine, which would still provide a sweet, savory, and subtly spiced flavor profile.\n\nAs for Japanese Beef Curry Rice, it's not primarily a spicy dish, but you could create a vegetarian version by substituting the beef with vegetables like portobello mushrooms or eggplant. While the dish is known for its mild, sweet flavor, you could add some heat by incorporating red pepper flakes or sriracha into the curry sauce.\n\nSome other spicy vegetarian Asian dishes that come to mind, although not mentioned in the provided context, include:\n\n- Vegetable Pho (a Vietnamese noodle soup with a spicy broth made from chilies, ginger, and star anise)\n- Szechuan Kung Pao Tofu (a Chinese stir-fry with a spicy sauce made from Szechuan peppercorns, chilies, and soy sauce)\n- Thai Red Curry with Vegetables (a coconut-based curry with a spicy paste made from red chilies, lemongrass, and galangal)\n\nThese are just a few examples of spicy vegetarian Asian dishes. There are countless variations and regional specialties to explore, and the best option would depend on your personal taste preferences and specific dietary needs.",
+      "retrieved_docs": [
+        [
+          "105",
+          0.8173363,
+          "Japanese Beef Curry Rice, known as Kare Raisu, is "
+        ],
+        [
+          "92",
+          0.81673056,
+          "Massaman Curry is a rich, mildly spiced Thai curry"
+        ],
+        [
+          "90",
+          0.8125043,
+          "Laksa is a beloved Malaysian noodle soup combining"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 276.48,
+        "generation_ms": 902.99,
+        "total_ms": 1179.47
+      }
+    },
+    {
+      "query": "quick easy breakfast options",
+      "category": "multi_criteria",
+      "answer": "Based on the provided context, quick and easy breakfast options include:\n\n1. Overnight Oats with Chia Seeds: This no-cook breakfast is meal-prep friendly and requires minimal effort, as it involves simply combining ingredients in a jar and refrigerating overnight.\n\n2. Shakshuka: Although it involves a bit of cooking, Shakshuka is a one-pan wonder that can be prepared quickly, making it a great option for busy mornings.\n\n3. Keema Paratha: This traditional Lahore breakfast dish is quick to prepare, involving rolling the dough with the seasoned meat filling inside and cooking it on a griddle until golden and crispy.\n\nThese options are all convenient and can be prepared in no time, making them ideal for busy mornings.",
+      "retrieved_docs": [
+        [
+          "101",
+          0.842764,
+          "Overnight Oats with Chia Seeds is a convenient, no"
+        ],
+        [
+          "94",
+          0.79779494,
+          "Shakshuka is a vibrant North African and Middle Ea"
+        ],
+        [
+          "80",
+          0.7893052,
+          "Keema Paratha is a traditional Lahore breakfast di"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 275.42,
+        "generation_ms": 480.85,
+        "total_ms": 756.27
+      }
+    },
+    {
+      "query": "creamy pasta dishes from Italy",
+      "category": "multi_criteria",
+      "answer": "Based on the provided context, I can identify two creamy pasta dishes from Italy:\n\n1. Risotto: This Italian rice dish is prepared with Arborio or Carnaroli rice and is characterized by its creamy texture, achieved through the gradual addition of warm broth and constant stirring, which releases starch from the rice.\n\nNote: Although risotto is technically a rice dish, it can be paired with pasta or other ingredients, but the primary ingredient is rice, not pasta.\n\nThere is no other creamy pasta dish mentioned in the context.",
+      "retrieved_docs": [
+        [
+          "86",
+          0.8213967,
+          "Risotto is an Italian rice dish prepared through a"
+        ],
+        [
+          "104",
+          0.7922143,
+          "Southern Mac and Cheese is a beloved American comf"
+        ],
+        [
+          "7",
+          0.78222084,
+          "Paneer butter masala is a creamy tomato-based curr"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 278.96,
+        "generation_ms": 468.06,
+        "total_ms": 747.02
+      }
+    },
+    {
+      "query": "high-protein low-carb foods",
+      "category": "nutritional",
+      "answer": "Based on the provided context, high-protein low-carb foods can be found in the following dishes:\n\n1. Grilled Chicken Breast: As mentioned, chicken breast contains approximately 31 grams of protein per 100g serving with minimal fat, making it ideal for fitness-conscious individuals.\n\n2. Grilled Salmon: Grilled salmon provides approximately 25 grams of high-quality protein per 100g serving, with minimal carbohydrates.\n\nThese two options are high in protein and relatively low in carbohydrates, making them suitable for individuals looking to follow a high-protein, low-carb diet.",
+      "retrieved_docs": [
+        [
+          "85",
+          0.8316475,
+          "Grilled Chicken Breast with Sweet Potato is a lean"
+        ],
+        [
+          "83",
+          0.8287763,
+          "Greek Salad with Chickpeas is a nutrient-dense hea"
+        ],
+        [
+          "82",
+          0.8240421,
+          "Grilled Salmon with Quinoa is an excellent healthy"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 261.58,
+        "generation_ms": 428.21,
+        "total_ms": 689.8
+      }
+    },
+    {
+      "query": "foods rich in vitamins and antioxidants",
+      "category": "nutritional",
+      "answer": "Based on the provided context, the foods rich in vitamins and antioxidants are:\n\n- Broccoli: rich in vitamin C (approximately 89mg per cup) and cancer-fighting sulforaphane compounds.\n- Spinach: rich in vitamins A, C, and K, especially vitamin C which enhances iron absorption.\n- Lettuce: a source of folate (a B vitamin).\n- Tomatoes and bell peppers: rich in vitamin C.\n- Broccoli and spinach: contain antioxidants like sulforaphane and vitamins which can be considered as antioxidants.\n\nThese foods are known for their high nutritional value and health benefits, making them an essential part of a balanced diet.",
+      "retrieved_docs": [
+        [
+          "84",
+          0.8316778,
+          "Steamed Broccoli with Brown Rice is a simple, nutr"
+        ],
+        [
+          "83",
+          0.8312989,
+          "Greek Salad with Chickpeas is a nutrient-dense hea"
+        ],
+        [
+          "81",
+          0.8303119,
+          "Spinach and Lentil Soup is a highly nutritious hea"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 249.25,
+        "generation_ms": 467.53,
+        "total_ms": 716.78
+      }
+    },
+    {
+      "query": "heart-healthy meal options",
+      "category": "nutritional",
+      "answer": "Based on the provided context, the following meal options are heart-healthy:\n\n1. Grilled Salmon with Quinoa: This meal combines omega-3 rich fatty fish (salmon) with a complete protein grain (quinoa), providing approximately 35 grams of protein, healthy fats, and complex carbohydrates. The omega-3 fatty acids in salmon support cardiovascular health.\n\n2. Greek Salad with Chickpeas: This nutrient-dense salad includes various vitamins and minerals, along with chickpeas that contribute 15 grams of protein and 12 grams of fiber per cooked cup. The fiber and protein in chickpeas promote satiety and digestive health, which can help maintain a healthy heart.\n\nThese meals are heart-healthy due to their high protein content, omega-3 fatty acids, and fiber, which can help lower cholesterol levels and blood pressure.",
+      "retrieved_docs": [
+        [
+          "83",
+          0.82735384,
+          "Greek Salad with Chickpeas is a nutrient-dense hea"
+        ],
+        [
+          "103",
+          0.81974906,
+          "Cauliflower Rice Stir-Fry is a low-carbohydrate al"
+        ],
+        [
+          "82",
+          0.81797886,
+          "Grilled Salmon with Quinoa is an excellent healthy"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 291.95,
+        "generation_ms": 579.17,
+        "total_ms": 871.12
+      }
+    },
+    {
+      "query": "traditional comfort foods",
+      "category": "cultural_exploration",
+      "answer": "Based on the provided context, the traditional comfort foods mentioned are:\n\n1. Japanese Beef Curry Rice (Kare Raisu)\n2. Southern Mac and Cheese\n3. Chicken Pot Pie\n\nThese dishes are described as beloved comfort foods that have been passed down through generations and are often associated with feelings of warmth, love, and nostalgia.",
+      "retrieved_docs": [
+        [
+          "105",
+          0.8341658,
+          "Japanese Beef Curry Rice, known as Kare Raisu, is "
+        ],
+        [
+          "104",
+          0.8331251,
+          "Southern Mac and Cheese is a beloved American comf"
+        ],
+        [
+          "106",
+          0.82538414,
+          "Chicken Pot Pie is the ultimate American comfort f"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 265.98,
+        "generation_ms": 710.95,
+        "total_ms": 976.93
+      }
+    },
+    {
+      "query": "authentic street food dishes",
+      "category": "cultural_exploration",
+      "answer": "Based on the provided context, the three authentic street food dishes mentioned are:\n\n1. Elote (Mexico)\n2. Seekh Kebab (Lahore, Pakistan)\n3. Tteokbokki (Korea)\n\nThese dishes are described as quintessential or popular street foods in their respective countries, showcasing the unique flavors and textures of each culture.",
+      "retrieved_docs": [
+        [
+          "109",
+          0.8346013,
+          "Elote is the quintessential Mexican street food—gr"
+        ],
+        [
+          "78",
+          0.82996273,
+          "Seekh Kebab is a popular Lahore appetizer consisti"
+        ],
+        [
+          "43",
+          0.8294382,
+          "Tteokbokki is a popular Korean street food made of"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 283.96,
+        "generation_ms": 427.01,
+        "total_ms": 710.97
+      }
+    },
+    {
+      "query": "festive celebration meals",
+      "category": "cultural_exploration",
+      "answer": "Based on the provided context, it appears that all three dishes (Nasi lemak, Paella, and Haleem) are associated with festive celebrations.\n\n- Nasi lemak is Malaysia's national dish, implying its significance in the country's cultural celebrations.\n- Paella is a traditional Spanish dish often served during festive occasions and gatherings.\n- Haleem is a popular dish during Ramadan in Lahore, a significant period in the Islamic calendar for fasting and celebration.\n\nTherefore, these dishes are often part of festive celebration meals in their respective cultures.",
+      "retrieved_docs": [
+        [
+          "30",
+          0.7953211,
+          "Nasi lemak is Malaysia's national dish consisting "
+        ],
+        [
+          "89",
+          0.79506195,
+          "Paella is a Spanish rice dish prepared in a wide, "
+        ],
+        [
+          "76",
+          0.7920918,
+          "Haleem is a slow-cooked meat and lentil stew popul"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 283.95,
+        "generation_ms": 428.27,
+        "total_ms": 712.22
+      }
+    },
+    {
+      "query": "dishes that can be grilled",
+      "category": "cooking_method",
+      "answer": "Based on the given context, the following dishes can be grilled:\n\n1. Mediterranean Grilled Fish with Herbs (the fish is marinated and then grilled to perfection).\n2. Seekh Kebab (the spiced ground meat is molded onto skewers and grilled over charcoal).",
+      "retrieved_docs": [
+        [
+          "102",
+          0.8397578,
+          "Mediterranean Grilled Fish with Herbs is a heart-h"
+        ],
+        [
+          "78",
+          0.8368088,
+          "Seekh Kebab is a popular Lahore appetizer consisti"
+        ],
+        [
+          "97",
+          0.8200477,
+          "Okonomiyaki is a savory Japanese pancake whose nam"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 261.97,
+        "generation_ms": 449.49,
+        "total_ms": 711.46
+      }
+    },
+    {
+      "query": "slow-cooked tender meals",
+      "category": "cooking_method",
+      "answer": "Based on the provided context, slow-cooked tender meals include:\n\n1. Haleem (a slow-cooked meat and lentil stew popular during Ramadan in Lahore, where beef or lamb is simmered with split peas, lentils, and aromatic spices for several hours until the meat becomes extremely tender).\n2. Chicken Pot Pie (while not exclusively slow-cooked, the filling combines chicken with classic vegetables in a velvety sauce, and the pie is baked until the filling bubbles and the crust turns perfectly golden, implying that the filling is cooked for a considerable amount of time).\n3. Southern Mac and Cheese (the pasta is mixed with the velvety cheese sauce, then baked until golden and bubbly, indicating that the dish is cooked for a relatively long time to achieve the perfect creaminess).\n\nHowever, Haleem and Chicken Pot Pie are more distinct examples of slow-cooked tender meals compared to Southern Mac and Cheese, which, while baked, is not necessarily slow-cooked.",
+      "retrieved_docs": [
+        [
+          "106",
+          0.80309373,
+          "Chicken Pot Pie is the ultimate American comfort f"
+        ],
+        [
+          "76",
+          0.8021024,
+          "Haleem is a slow-cooked meat and lentil stew popul"
+        ],
+        [
+          "104",
+          0.80209404,
+          "Southern Mac and Cheese is a beloved American comf"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 259.8,
+        "generation_ms": 1835.28,
+        "total_ms": 2095.08
+      }
+    },
+    {
+      "query": "fresh raw preparations",
+      "category": "cooking_method",
+      "answer": "Based on the provided context, the fresh raw preparations are those of: \n\n1. Shallots\n2. Garlic\n3. Galangal \n4. Chilies \n5. Fresh naan bread (served with Haleem)\n6. Sliced onions (served with Haleem)\n7. Lime juice (served with Haleem) and \n8. Fresh coconut milk.",
+      "retrieved_docs": [
+        [
+          "90",
+          0.79126775,
+          "Laksa is a beloved Malaysian noodle soup combining"
+        ],
+        [
+          "53",
+          0.7900746,
+          "Hangi is a traditional Māori method of cooking mea"
+        ],
+        [
+          "76",
+          0.78960156,
+          "Haleem is a slow-cooked meat and lentil stew popul"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 284.66,
+        "generation_ms": 3484.27,
+        "total_ms": 3768.93
+      }
+    }
+  ]
+}

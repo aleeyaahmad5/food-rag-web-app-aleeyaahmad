@@ -1,0 +1,11 @@
+# Local RAG System Dependencies (ChromaDB + Ollama)
+# Week 2 Implementation
+
+chromadb>=0.4.0
+requests>=2.28.0
+
+# Note: Ollama must be installed separately
+# Install from: https://ollama.ai/
+# Required models:
+#   ollama pull mxbai-embed-large
+#   ollama pull llama3.2

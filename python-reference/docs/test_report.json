@@ -1,0 +1,455 @@
+{
+  "test_date": "2025-12-10T01:32:45.967245",
+  "system": "Cloud RAG (Upstash Vector + Groq)",
+  "total_queries": 15,
+  "summary": {
+    "total_queries": 15,
+    "cloud_performance": {
+      "avg_retrieval_ms": 258.92,
+      "avg_generation_ms": 547.21,
+      "avg_total_ms": 806.12,
+      "min_total_ms": 524.8,
+      "max_total_ms": 1502.65
+    },
+    "local_baseline": {
+      "avg_embedding_ms": 2192.06,
+      "avg_retrieval_ms": 4.04,
+      "avg_generation_ms": 21493.33,
+      "avg_total_ms": 23690.74
+    },
+    "improvement": {
+      "retrieval_percent": 88.2,
+      "generation_percent": 97.5,
+      "total_percent": 96.6
+    },
+    "by_category": {
+      "semantic_similarity": {
+        "avg_ms": 1073.08,
+        "count": 3
+      },
+      "multi_criteria": {
+        "avg_ms": 836.34,
+        "count": 3
+      },
+      "nutritional": {
+        "avg_ms": 720.65,
+        "count": 3
+      },
+      "cultural_exploration": {
+        "avg_ms": 685.37,
+        "count": 3
+      },
+      "cooking_method": {
+        "avg_ms": 715.18,
+        "count": 3
+      }
+    }
+  },
+  "detailed_results": [
+    {
+      "query": "healthy Mediterranean options",
+      "category": "semantic_similarity",
+      "answer": "Based on the provided context, some healthy Mediterranean options include:\n\n1. Greek Salad with Chickpeas: This salad combines nutrient-dense vegetables with plant-based protein from chickpeas and contributes to a balanced diet with vitamins, fiber, and calcium.\n\n2. Hummus: As a Middle Eastern dip or spread, hummus is made from chickpeas and offers a high amount of fiber and protein, promoting satiety and digestive health.\n\n3. Grilled Salmon with Quinoa: This combination of omega-3 rich fatty fish and a complete protein grain provides a balanced meal with approximately 35 grams of protein, healthy fats, and complex carbohydrates.\n\nThese options align with the Mediterranean diet's emphasis on whole grains, fruits, vegetables, and plant-based protein sources, while incorporating healthy fats like olive oil.",
+      "retrieved_docs": [
+        [
+          "83",
+          0.8557532,
+          "Greek Salad with Chickpeas is a nutrient-dense hea"
+        ],
+        [
+          "66",
+          0.80225426,
+          "Hummus is a Middle Eastern dip or spread made from"
+        ],
+        [
+          "82",
+          0.8004161,
+          "Grilled Salmon with Quinoa is an excellent healthy"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 659.9,
+        "generation_ms": 842.75,
+        "total_ms": 1502.65
+      }
+    },
+    {
+      "query": "light and refreshing summer dishes",
+      "category": "semantic_similarity",
+      "answer": "For light and refreshing summer dishes, I would recommend avoiding rich and heavy options like Paneer butter masala, which is a creamy tomato-based curry. \n\nConsidering the given context, a more suitable option for a light and refreshing summer dish would be a Tempura dish, but since it is deep-fried, it might not be the lightest option. \n\nHowever, if you're looking for a refreshing and light option, you could consider serving the seafood or vegetables that would typically be used in a Tempura dish but without the batter and deep-frying. This way, you can still enjoy the flavors of the dish while keeping it light and refreshing.\n\nAlternatively, you could also consider pairing a light and refreshing dish with the sour taste of a lemon, which could help to cut through the richness of other ingredients in a meal.",
+      "retrieved_docs": [
+        [
+          "63",
+          0.7895862,
+          "Tempura is a Japanese dish of seafood or vegetable"
+        ],
+        [
+          "2",
+          0.7840941,
+          "A lemon is yellow and very sour."
+        ],
+        [
+          "7",
+          0.78326833,
+          "Paneer butter masala is a creamy tomato-based curr"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 247.07,
+        "generation_ms": 531.53,
+        "total_ms": 778.6
+      }
+    },
+    {
+      "query": "warm comforting winter meals",
+      "category": "semantic_similarity",
+      "answer": "Based on the context provided, I would recommend the following warm and comforting winter meals:\n\n1. **Paya Gosht**: This traditional Lahore delicacy is a perfect fit for winter. The dish is slow-cooked overnight with animal trotters and meat, resulting in a rich, gelatinous, and tender texture that absorbs all the flavors from the spice blend. The warming spices and rich gravy make it an ideal comfort food for the cold winter months.\n\n2. **Coq au Vin**: This classic French braised chicken dish is a hearty and comforting meal that's perfect for winter. The slow-cooked chicken, tender and infused with the flavors of red wine, beef broth, and aromatic herbs, will warm your belly and your soul.\n\n3. **Haleem**: Another traditional dish popular during Ramadan in Lahore, Haleem is a slow-cooked meat and lentil stew that's perfect for cold winter days. The rich, thick consistency and the flavors of aromatic spices like cinnamon, cardamom, and cumin make it a comforting and satisfying meal.\n\nThese three dishes are perfect examples of warm and comforting winter meals that will help you navigate the chilly months with a full and happy belly.",
+      "retrieved_docs": [
+        [
+          "79",
+          0.775167,
+          "Paya Gosht is a traditional Lahore delicacy made f"
+        ],
+        [
+          "88",
+          0.77304804,
+          "Coq au Vin is a classic French braised chicken dis"
+        ],
+        [
+          "76",
+          0.7730117,
+          "Haleem is a slow-cooked meat and lentil stew popul"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 226.5,
+        "generation_ms": 711.48,
+        "total_ms": 937.98
+      }
+    },
+    {
+      "query": "spicy vegetarian Asian dishes",
+      "category": "multi_criteria",
+      "answer": "Based on the given context, I can suggest some spicy vegetarian Asian dishes that can be made by adapting the techniques and ingredients used in Laksa, Tom Yum, and Rendang. Here are a few options:\n\n1. **Vegetarian Laksa**: Replace the shrimp paste with a vegetarian alternative, such as tempeh or tofu, and add more vegetables like bok choy or bean sprouts to create a flavorful and spicy noodle soup.\n2. **Tom Yum Tofu**: Replace the shrimp with extra-firm tofu and add more lemongrass, lime juice, and chili peppers to create a hot and sour Thai soup.\n3. **Vegetarian Rendang**: Use plant-based protein sources like tofu, tempeh, or seitan, and add more vegetables like potatoes, carrots, or zucchini to create a spicy and flavorful dish.\n4. **Spicy Vegan Noodle Soup**: Combine elements from Laksa and Tom Yum to create a unique noodle soup with a rich coconut broth, aromatic spices, and a variety of vegetables like mushrooms, bok choy, and bean sprouts.\n5. **Chili-Glazed Tofu with Coconut Rice**: Inspired by the spicy flavors of Rendang, this dish features crispy tofu glazed with a mixture of coconut milk, chili peppers, and spices, served with fluffy coconut rice.\n\nThese ideas are just a starting point, and you can experiment with different combinations of ingredients and spices to create your own unique spicy vegetarian Asian dishes.",
+      "retrieved_docs": [
+        [
+          "90",
+          0.8124751,
+          "Laksa is a beloved Malaysian noodle soup combining"
+        ],
+        [
+          "26",
+          0.80581975,
+          "Tom Yum is a hot and sour Thai soup made with shri"
+        ],
+        [
+          "29",
+          0.8023262,
+          "Rendang is a spicy meat dish slow-cooked in coconu"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 224.97,
+        "generation_ms": 751.65,
+        "total_ms": 976.62
+      }
+    },
+    {
+      "query": "quick easy breakfast options",
+      "category": "multi_criteria",
+      "answer": "Based on the context provided, the quick and easy breakfast options would be:\n\n1. Keema Paratha - This traditional Lahore breakfast dish is quick to prepare and deeply satisfying. It's a staple breakfast food in Lahore households and can be easily cooked on a griddle.\n2. Masala dosa (without the dosa preparation time) - While the fermentation process for masala dosa can take time, the actual preparation of the spicy mashed potatoes filling and assembling the dosa can be relatively quick.\n\nHowever, if we consider a comparison between the options, Keema Paratha is likely to be a quicker and more straightforward option, as it involves just filling a flatbread with spiced ground meat and cooking it on a griddle.",
+      "retrieved_docs": [
+        [
+          "80",
+          0.7893052,
+          "Keema Paratha is a traditional Lahore breakfast di"
+        ],
+        [
+          "89",
+          0.7773447,
+          "Paella is a Spanish rice dish prepared in a wide, "
+        ],
+        [
+          "8",
+          0.7762666,
+          "Masala dosa is a thin, crispy fermented crepe fill"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 267.64,
+        "generation_ms": 478.63,
+        "total_ms": 746.26
+      }
+    },
+    {
+      "query": "creamy pasta dishes from Italy",
+      "category": "multi_criteria",
+      "answer": "Based on the context provided, two creamy pasta dishes from Italy are not mentioned directly, however, based on general knowledge of Italian cuisine, the answer would include:\n\n1. Risotto - An Italian rice dish that can be made with a variety of ingredients and is known for its creamy texture due to the starch released from the rice during cooking.\n\nHowever, if we consider pasta dishes specifically, there are several creamy options from Italy. Some of these include:\n\n1. Fettuccine Alfredo - A classic Italian pasta dish made with fettuccine noodles, Parmesan cheese, and butter.\n2. Carbonara - A rich and creamy pasta dish made with spaghetti, eggs, bacon or pancetta, and Parmesan cheese.\n3. Pappardelle alla Boscaiola - A creamy mushroom pasta dish made with pappardelle noodles, mushrooms, and a rich sauce.\n\nThese are just a few examples, and there are many more creamy pasta dishes from Italy.",
+      "retrieved_docs": [
+        [
+          "86",
+          0.82142264,
+          "Risotto is an Italian rice dish prepared through a"
+        ],
+        [
+          "7",
+          0.78220046,
+          "Paneer butter masala is a creamy tomato-based curr"
+        ],
+        [
+          "90",
+          0.7705369,
+          "Laksa is a beloved Malaysian noodle soup combining"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 223.89,
+        "generation_ms": 562.25,
+        "total_ms": 786.14
+      }
+    },
+    {
+      "query": "high-protein low-carb foods",
+      "category": "nutritional",
+      "answer": "Based on the provided context, the high-protein low-carb foods mentioned are:\n\n1. Grilled Chicken Breast (31 grams of protein per 100g serving, with minimal fat and low carbohydrate content)\n\nAlthough chicken breast is not explicitly labeled as low-carb, it is a lean protein source with minimal fat and can be considered low-carb compared to other protein sources.\n\nNote: A more accurate high-protein low-carb food might be salmon, but its omega-3 content is not directly related to its carb content. A more suitable option is not explicitly mentioned in the provided context.",
+      "retrieved_docs": [
+        [
+          "85",
+          0.8316612,
+          "Grilled Chicken Breast with Sweet Potato is a lean"
+        ],
+        [
+          "83",
+          0.82877076,
+          "Greek Salad with Chickpeas is a nutrient-dense hea"
+        ],
+        [
+          "82",
+          0.8239995,
+          "Grilled Salmon with Quinoa is an excellent healthy"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 225.43,
+        "generation_ms": 479.54,
+        "total_ms": 704.97
+      }
+    },
+    {
+      "query": "foods rich in vitamins and antioxidants",
+      "category": "nutritional",
+      "answer": "Based on the provided context, the following foods are rich in vitamins and antioxidants:\n\n1. Broccoli - rich in vitamin C (approximately 89mg per cup), folate, and cancer-fighting sulforaphane compounds.\n2. Spinach - rich in vitamins A, C, and K, as well as iron.\n3. Bell peppers and tomatoes - contribute to vitamin C content in the Greek Salad with Chickpeas.\n4. Lettuce (in Greek Salad with Chickpeas) - provides folate and other essential vitamins.\n\nThese foods are packed with essential vitamins, minerals, and antioxidants, making them an excellent choice for a healthy diet.",
+      "retrieved_docs": [
+        [
+          "84",
+          0.83164763,
+          "Steamed Broccoli with Brown Rice is a simple, nutr"
+        ],
+        [
+          "83",
+          0.8312765,
+          "Greek Salad with Chickpeas is a nutrient-dense hea"
+        ],
+        [
+          "81",
+          0.8302884,
+          "Spinach and Lentil Soup is a highly nutritious hea"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 225.07,
+        "generation_ms": 467.39,
+        "total_ms": 692.46
+      }
+    },
+    {
+      "query": "heart-healthy meal options",
+      "category": "nutritional",
+      "answer": "Based on the provided context, the heart-healthy meal options are:\n\n1. Grilled Salmon with Quinoa: This meal provides approximately 25 grams of high-quality protein and 2.3 grams of omega-3 fatty acids per 100g serving, which support cardiovascular health.\n\nThe omega-3 fatty acids found in salmon are particularly beneficial for heart health as they help lower triglycerides, reduce blood pressure, and prevent blood clots.\n\n2. Greek Salad with Chickpeas: While not as directly related to omega-3 fatty acids, this salad has several heart-healthy components. The potassium content from vegetables like tomatoes and peppers can help lower blood pressure, while the fiber from chickpeas can reduce cholesterol levels and support healthy digestion.\n\nHowever, it's essential to note that the heart-healthy benefits of the Greek Salad with Chickpeas are more indirect compared to the Grilled Salmon with Quinoa.",
+      "retrieved_docs": [
+        [
+          "83",
+          0.8273486,
+          "Greek Salad with Chickpeas is a nutrient-dense hea"
+        ],
+        [
+          "82",
+          0.81795305,
+          "Grilled Salmon with Quinoa is an excellent healthy"
+        ],
+        [
+          "85",
+          0.8155003,
+          "Grilled Chicken Breast with Sweet Potato is a lean"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 226.1,
+        "generation_ms": 538.42,
+        "total_ms": 764.51
+      }
+    },
+    {
+      "query": "traditional comfort foods",
+      "category": "cultural_exploration",
+      "answer": "Based on the provided context, traditional comfort foods from Lahore would be:\n\n1. Paya Gosht: This dish is particularly popular during winter months and is often consumed at dawn during Ramadan, indicating its significance as a comfort food for the people of Lahore.\n\n2. Keema Paratha: As a staple breakfast food in Lahore households, Keema Paratha is a quintessential comfort food that is quick to prepare yet deeply satisfying, often served with accompaniments that add to its comforting nature.\n\n3. Rendang is not from Lahore, but it could also serve as a comfort food, however based on the provided context the information about its origin is from Indonesia, not Lahore.",
+      "retrieved_docs": [
+        [
+          "29",
+          0.81451607,
+          "Rendang is a spicy meat dish slow-cooked in coconu"
+        ],
+        [
+          "79",
+          0.8141217,
+          "Paya Gosht is a traditional Lahore delicacy made f"
+        ],
+        [
+          "80",
+          0.81254065,
+          "Keema Paratha is a traditional Lahore breakfast di"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 223.21,
+        "generation_ms": 454.0,
+        "total_ms": 677.2
+      }
+    },
+    {
+      "query": "authentic street food dishes",
+      "category": "cultural_exploration",
+      "answer": "Based on the provided context, the authentic street food dishes mentioned are:\n\n1. Seekh Kebab (a popular Lahore appetizer)\n2. Tteokbokki (a popular Korean street food)\n3. Karahi Gosht (a vibrant, aromatic meat curry traditionally cooked in a karahi pan, representing authentic Lahore street food culture)",
+      "retrieved_docs": [
+        [
+          "78",
+          0.8299818,
+          "Seekh Kebab is a popular Lahore appetizer consisti"
+        ],
+        [
+          "43",
+          0.82948816,
+          "Tteokbokki is a popular Korean street food made of"
+        ],
+        [
+          "77",
+          0.82735074,
+          "Karahi Gosht is a vibrant, aromatic meat curry tra"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 224.28,
+        "generation_ms": 300.51,
+        "total_ms": 524.8
+      }
+    },
+    {
+      "query": "festive celebration meals",
+      "category": "cultural_exploration",
+      "answer": "Based on the provided context, festive celebration meals can be associated with the following dishes:\n\n1. Paella (Spanish): It's a traditional Spanish dish often served during festive celebrations, especially during outdoor gatherings and special occasions.\n2. Haleem (South Asian): This slow-cooked stew is specifically popular during Ramadan, a holy month of fasting for Muslims. It's a traditional dish served during festive celebrations and gatherings during this time.\n3. Nasi Lemak (Malaysian): Although it's not explicitly stated as a festive dish, Nasi Lemak is Malaysia's national dish and might be served during festive celebrations and special occasions in Malaysia.\n\nThese dishes are often associated with traditional and cultural celebrations, making them suitable for festive meals.",
+      "retrieved_docs": [
+        [
+          "30",
+          0.79531205,
+          "Nasi lemak is Malaysia's national dish consisting "
+        ],
+        [
+          "89",
+          0.7950741,
+          "Paella is a Spanish rice dish prepared in a wide, "
+        ],
+        [
+          "76",
+          0.7921281,
+          "Haleem is a slow-cooked meat and lentil stew popul"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 226.94,
+        "generation_ms": 627.18,
+        "total_ms": 854.12
+      }
+    },
+    {
+      "query": "dishes that can be grilled",
+      "category": "cooking_method",
+      "answer": "Based on the provided context, the dish that can be grilled is Seekh Kebab. It is described as being \"molded onto long metal skewers and grilled over charcoal\" which gives it a smoky and charred exterior while retaining a juicy and flavorful interior.",
+      "retrieved_docs": [
+        [
+          "78",
+          0.83684003,
+          "Seekh Kebab is a popular Lahore appetizer consisti"
+        ],
+        [
+          "88",
+          0.81046116,
+          "Coq au Vin is a classic French braised chicken dis"
+        ],
+        [
+          "89",
+          0.80986345,
+          "Paella is a Spanish rice dish prepared in a wide, "
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 225.11,
+        "generation_ms": 310.2,
+        "total_ms": 535.31
+      }
+    },
+    {
+      "query": "slow-cooked tender meals",
+      "category": "cooking_method",
+      "answer": "Based on the provided context, slow-cooked tender meals include:\n\n1. Haleem (slow-cooked meat and lentil stew)\n2. Paella (Spanish rice dish)\n   - Paella is not a slow-cooked tender meal in the traditional sense, but it does involve a long simmering time to form the crust called socarrat.\n\nHowever, considering the question's focus on 'slow-cooked tender meals,' Haleem is a more prominent example of a dish that perfectly matches the description.\n\n3. Risotto (Italian rice dish) - While risotto does not have an extremely long cooking time compared to Haleem, it is a slow-cooked dish, but not traditionally slow-cooked like Haleem.",
+      "retrieved_docs": [
+        [
+          "76",
+          0.8021211,
+          "Haleem is a slow-cooked meat and lentil stew popul"
+        ],
+        [
+          "89",
+          0.800622,
+          "Paella is a Spanish rice dish prepared in a wide, "
+        ],
+        [
+          "86",
+          0.798535,
+          "Risotto is an Italian rice dish prepared through a"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 228.37,
+        "generation_ms": 566.21,
+        "total_ms": 794.59
+      }
+    },
+    {
+      "query": "fresh raw preparations",
+      "category": "cooking_method",
+      "answer": "Based on the provided context, it seems like you're looking for information about raw or fresh preparations related to the mentioned dishes. However, since 'Haleem' is a slow-cooked dish, it's unlikely to have a fresh raw preparation. But here are some options from the other mentioned dishes:\n\nFor Laksa, a fresh raw preparation might be the raw ingredients like vegetables, such as bean sprouts, bok choy, or cucumbers, that can be added to the noodle soup at the end of cooking. \n\nFor Hangi, since it's a traditional Māori method of cooking, I couldn't find much information on fresh raw preparations directly associated with it. However, some Māori dishes might include raw ingredients like raw fish or raw vegetables.\n\nFor the context as a whole, you might also consider naan bread, which is typically served fresh and raw.",
+      "retrieved_docs": [
+        [
+          "90",
+          0.7912252,
+          "Laksa is a beloved Malaysian noodle soup combining"
+        ],
+        [
+          "53",
+          0.790081,
+          "Hangi is a traditional Māori method of cooking mea"
+        ],
+        [
+          "76",
+          0.78961134,
+          "Haleem is a slow-cooked meat and lentil stew popul"
+        ]
+      ],
+      "timing": {
+        "retrieval_ms": 229.25,
+        "generation_ms": 586.39,
+        "total_ms": 815.64
+      }
+    }
+  ]
+}

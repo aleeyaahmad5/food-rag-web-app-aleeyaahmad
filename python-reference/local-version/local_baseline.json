@@ -1,0 +1,235 @@
+{
+  "test_date": "2025-12-10T01:29:05.742088",
+  "system": "Local RAG (ChromaDB + Ollama)",
+  "model_embedding": "mxbai-embed-large",
+  "model_llm": "llama3.2",
+  "database": {
+    "type": "ChromaDB",
+    "path": "chroma_db",
+    "collection": "foods"
+  },
+  "results": [
+    {
+      "query": "healthy Mediterranean options",
+      "category": "semantic_similarity",
+      "embedding_ms": 3379.04,
+      "retrieval_ms": 3.6,
+      "generation_ms": 24693.65,
+      "total_ms": 28077.6,
+      "retrieved_ids": [
+        "83",
+        "82",
+        "69"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "light and refreshing summer dishes",
+      "category": "semantic_similarity",
+      "embedding_ms": 2084.2,
+      "retrieval_ms": 3.9,
+      "generation_ms": 14423.21,
+      "total_ms": 16512.43,
+      "retrieved_ids": [
+        "83",
+        "69",
+        "86"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "warm comforting winter meals",
+      "category": "semantic_similarity",
+      "embedding_ms": 2095.17,
+      "retrieval_ms": 3.85,
+      "generation_ms": 28358.11,
+      "total_ms": 30458.48,
+      "retrieved_ids": [
+        "88",
+        "79",
+        "90"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "spicy vegetarian Asian dishes",
+      "category": "multi_criteria",
+      "embedding_ms": 2130.97,
+      "retrieval_ms": 3.74,
+      "generation_ms": 13168.28,
+      "total_ms": 15303.99,
+      "retrieved_ids": [
+        "90",
+        "26",
+        "35"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "quick easy breakfast options",
+      "category": "multi_criteria",
+      "embedding_ms": 2097.66,
+      "retrieval_ms": 3.58,
+      "generation_ms": 23532.25,
+      "total_ms": 25634.52,
+      "retrieved_ids": [
+        "80",
+        "82",
+        "8"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "creamy pasta dishes from Italy",
+      "category": "multi_criteria",
+      "embedding_ms": 2090.75,
+      "retrieval_ms": 2.18,
+      "generation_ms": 18709.64,
+      "total_ms": 20803.51,
+      "retrieved_ids": [
+        "86",
+        "7",
+        "90"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "high-protein low-carb foods",
+      "category": "nutritional",
+      "embedding_ms": 2120.01,
+      "retrieval_ms": 4.12,
+      "generation_ms": 30432.64,
+      "total_ms": 32558.13,
+      "retrieved_ids": [
+        "85",
+        "83",
+        "82"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "foods rich in vitamins and antioxidants",
+      "category": "nutritional",
+      "embedding_ms": 2160.86,
+      "retrieval_ms": 4.58,
+      "generation_ms": 30932.41,
+      "total_ms": 33099.35,
+      "retrieved_ids": [
+        "84",
+        "83",
+        "82"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "heart-healthy meal options",
+      "category": "nutritional",
+      "embedding_ms": 2143.21,
+      "retrieval_ms": 4.05,
+      "generation_ms": 26275.53,
+      "total_ms": 28423.9,
+      "retrieved_ids": [
+        "83",
+        "82",
+        "85"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "traditional comfort foods",
+      "category": "cultural_exploration",
+      "embedding_ms": 2071.34,
+      "retrieval_ms": 4.3,
+      "generation_ms": 15767.02,
+      "total_ms": 17843.96,
+      "retrieved_ids": [
+        "79",
+        "53",
+        "29"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "authentic street food dishes",
+      "category": "cultural_exploration",
+      "embedding_ms": 2077.07,
+      "retrieval_ms": 4.81,
+      "generation_ms": 21155.23,
+      "total_ms": 23238.88,
+      "retrieved_ids": [
+        "78",
+        "43",
+        "77"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "festive celebration meals",
+      "category": "cultural_exploration",
+      "embedding_ms": 2083.21,
+      "retrieval_ms": 4.04,
+      "generation_ms": 12772.28,
+      "total_ms": 14860.75,
+      "retrieved_ids": [
+        "78",
+        "17",
+        "79"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "dishes that can be grilled",
+      "category": "cooking_method",
+      "embedding_ms": 2124.18,
+      "retrieval_ms": 5.47,
+      "generation_ms": 17096.99,
+      "total_ms": 19227.87,
+      "retrieved_ids": [
+        "78",
+        "88",
+        "87"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "slow-cooked tender meals",
+      "category": "cooking_method",
+      "embedding_ms": 2079.52,
+      "retrieval_ms": 4.76,
+      "generation_ms": 26245.97,
+      "total_ms": 28331.81,
+      "retrieved_ids": [
+        "86",
+        "76",
+        "88"
+      ],
+      "status": "success"
+    },
+    {
+      "query": "fresh raw preparations",
+      "category": "cooking_method",
+      "embedding_ms": 2143.69,
+      "retrieval_ms": 3.57,
+      "generation_ms": 18836.67,
+      "total_ms": 20985.97,
+      "retrieved_ids": [
+        "90",
+        "88",
+        "53"
+      ],
+      "status": "success"
+    }
+  ],
+  "summary": {
+    "total_queries": 15,
+    "successful_queries": 15,
+    "failed_queries": 0,
+    "avg_embedding_ms": 2192.06,
+    "avg_retrieval_ms": 4.04,
+    "avg_generation_ms": 21493.33,
+    "avg_total_ms": 23690.74,
+    "min_total_ms": 14860.75,
+    "max_total_ms": 33099.35,
+    "median_total_ms": 23238.88
+  }
+}
