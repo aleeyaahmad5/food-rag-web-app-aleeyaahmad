@@ -41,13 +41,22 @@ The application leverages **AI-assisted development** using v0.dev to build a so
 - ✨ **AI-Powered Chat Interface** - Ask questions about food, cuisines, and cooking
 - 🔍 **Semantic Search** - Vector-based similarity search using Upstash Vector Database
 - 🧠 **LLM Integration** - Groq API for intelligent response generation  
-- � **Model Selection** - Choose between Llama 3.1 8B (fast) or 70B (versatile)
-- �📊 **Source Attribution** - See relevant sources with relevance scores
+- 📊 **Fast & Reliable** - Using Llama 3.1 8B for consistent, low-latency responses
+- 📋 **Source Attribution** - See relevant sources with relevance scores
 - 💾 **Conversation History** - Persistent chat memory with localStorage auto-save
 - 🎨 **Professional UI/UX** - Modern, responsive design with dark mode support
 - ⚡ **Real-time Streaming** - Stream AI responses in real-time with toggle option
 - 📈 **Performance Metrics** - Track vector search time, LLM processing time, and token usage
 - 📱 **Mobile-Optimized** - Fully responsive design for all devices
+
+> **📌 Note on Model Selection:**  
+> Originally planned to use Llama 3.1 70B, but the Groq free tier API key doesn't include access to the 70B models. We're using **Llama 3.1 8B-instant** instead, which is:
+> - ⚡ Fast (< 1 second per query)
+> - 🎯 Accurate for food knowledge tasks
+> - 💰 Optimal for free-tier constraints
+> - 🔄 Fully compatible with RAG system
+>
+> The 70B model would require a paid Groq API tier or different API provider.
 
 ## 🚀 Live Demo
 
