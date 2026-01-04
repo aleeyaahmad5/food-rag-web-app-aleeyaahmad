@@ -46,6 +46,7 @@ export default function Home() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [selectedModel, setSelectedModel] = useState<string>("llama-3.1-8b-instant")
   const [useStreaming, setUseStreaming] = useState(true)
+  const [showShortcuts, setShowShortcuts] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -377,7 +378,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative">
       <ParticleBackground />
-      <KeyboardShortcuts onNewChat={handleNewChat} onFocusInput={handleFocusInput} />
+      <KeyboardShortcuts onNewChat={handleNewChat} onFocusInput={handleFocusInput} showHelp={showShortcuts} setShowHelp={setShowShortcuts} />
       
       <div className="flex flex-1">
         {/* Desktop Sidebar */}
@@ -586,8 +587,11 @@ export default function Home() {
                   {isLoading ? <Spinner className="w-5 h-5" /> : <SendIcon className="w-5 h-5" />}
                 </Button>
               </form>
-              <p className="text-xs text-center text-slate-400 mt-2">
-                Press <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-xs font-mono mx-1">Enter</kbd> to send • <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-xs font-mono mx-1">Ctrl+K</kbd> to focus
+              <p className="text-xs text-center text-slate-400 mt-2 flex items-center justify-center gap-1 flex-wrap">
+                Press <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-xs font-mono mx-1">Enter</kbd> to send • <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-xs font-mono mx-1">Ctrl+K</kbd> to focus •
+                <button onClick={() => setShowShortcuts(true)} className="inline-flex items-center gap-1 hover:text-blue-500 transition-colors">
+                  <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-xs font-mono">?</kbd> shortcuts
+                </button>
               </p>
             </div>
           </div>

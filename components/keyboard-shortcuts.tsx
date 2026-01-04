@@ -6,10 +6,14 @@ import { Keyboard } from "lucide-react"
 interface KeyboardShortcutsProps {
   onNewChat?: () => void
   onFocusInput?: () => void
+  showHelp?: boolean
+  setShowHelp?: (show: boolean) => void
 }
 
-export function KeyboardShortcuts({ onNewChat, onFocusInput }: KeyboardShortcutsProps) {
-  const [showHelp, setShowHelp] = useState(false)
+export function KeyboardShortcuts({ onNewChat, onFocusInput, showHelp: externalShowHelp, setShowHelp: externalSetShowHelp }: KeyboardShortcutsProps) {
+  const [internalShowHelp, setInternalShowHelp] = useState(false)
+  const showHelp = externalShowHelp !== undefined ? externalShowHelp : internalShowHelp
+  const setShowHelp = externalSetShowHelp || setInternalShowHelp
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -51,14 +55,6 @@ export function KeyboardShortcuts({ onNewChat, onFocusInput }: KeyboardShortcuts
 
   return (
     <>
-      <button
-        onClick={() => setShowHelp(true)}
-        className="hidden md:flex fixed bottom-20 right-4 z-30 items-center gap-2 px-3 py-1.5 bg-white/90 dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 text-xs rounded-lg shadow-md backdrop-blur-sm hover:bg-white dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
-      >
-        <Keyboard className="w-3.5 h-3.5" />
-        Press <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-xs font-mono">?</kbd> for shortcuts
-      </button>
-
       {/* Modal */}
       {showHelp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
