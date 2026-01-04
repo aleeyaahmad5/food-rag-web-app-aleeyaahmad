@@ -477,8 +477,7 @@ export default function Home() {
                   onChange={(e) => setSelectedModel(e.target.value)}
                   className="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-0 focus:ring-2 focus:ring-blue-500 cursor-pointer transition-all hover:bg-slate-300 dark:hover:bg-slate-600"
                 >
-                  <option value="llama-3.1-8b-instant">⚡ Llama 3.1 8B (Fast)</option>
-                  <option value="llama-3.2-70b-versatile">🧠 Llama 3.2 70B (Smart)</option>
+                  <option value="llama-3.1-8b-instant">⚡ Llama 3.1 8B (Fast & Reliable)</option>
                 </select>
                 
                 <button

@@ -55,16 +55,13 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
   console.log("[ragQuery] Starting with question:", question, "model:", model)
   
   try {
-    // Validate model selection - using currently available Groq models
-    const validModels = ["llama-3.1-8b-instant", "llama-3.2-70b-versatile"]
-    // Handle old model names for backward compatibility
-    let selectedModel = model
-    if (model === "llama-3.1-70b-versatile") selectedModel = "llama-3.2-70b-versatile"
-    selectedModel = validModels.includes(selectedModel) ? selectedModel : "llama-3.1-8b-instant"
+    // Using Groq's available models - 8B is stable and fast
+    const validModels = ["llama-3.1-8b-instant"]
+    const selectedModel = validModels.includes(model) ? model : "llama-3.1-8b-instant"
     console.log("[ragQuery] Using model:", selectedModel)
     
-    // Adjust max tokens based on model - 70B can handle more
-    const maxTokens = selectedModel.includes("70b") ? 800 : 500
+    // Adjust max tokens based on model - 8B is efficient
+    const maxTokens = 500
     
     // Get lazily initialized clients
     console.log("[ragQuery] Initializing clients...")
@@ -106,14 +103,10 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
       const llmStart = performance.now()
       console.log("[ragQuery] Starting LLM call with", maxTokens, "max tokens...")
       
-      let completion;
-      let retries = selectedModel.includes("70b") ? 2 : 1;
-      let lastError;
-      
-      for (let i = 0; i < retries; i++) {
-        try {
-          console.log(`[ragQuery] LLM attempt ${i + 1}/${retries}`)
-          completion = await groqClient.chat.completions.create({
+      let completion;      
+      try {
+        console.log(`[ragQuery] LLM call to ${selectedModel}...`)
+        completion = await groqClient.chat.completions.create({
             model: selectedModel,
             messages: [
               {
@@ -130,20 +123,10 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
             max_tokens: maxTokens,
           })
           console.log("[ragQuery] LLM call successful")
-          break; // Success, exit retry loop
         } catch (err) {
-          lastError = err;
-          console.error(`[ragQuery] LLM attempt ${i + 1} failed:`, err);
-          if (i < retries - 1) {
-            // Wait before retry (exponential backoff)
-            await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
-          }
+          console.error("[ragQuery] LLM call failed:", err)
+          throw err
         }
-      }
-      
-      if (!completion) {
-        throw lastError || new Error("Failed to get response from AI model");
-      }
       
       const llmProcessingTime = performance.now() - llmStart
       console.log("[ragQuery] LLM processing took", llmProcessingTime, "ms")
