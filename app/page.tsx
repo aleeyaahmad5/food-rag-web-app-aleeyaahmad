@@ -13,6 +13,7 @@ import { KeyboardShortcuts } from "@/components/keyboard-shortcuts"
 import { StatsBar } from "@/components/stats-bar"
 import { ChatHistory, ChatSession } from "@/components/chat-history"
 import { SendIcon, Sparkles, ChefHat, Salad, Apple, Flame, Mic, MicOff, Database, Brain, Timer, Zap } from "lucide-react"
+import { ragQuery } from "@/app/actions"
 
 interface PerformanceMetrics {
   vectorSearchTime: number
@@ -266,31 +267,28 @@ export default function Home() {
     ])
 
     try {
-      // Simple API call - always use the same approach
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, model: selectedModel }),
-      })
-
-      if (!response.ok) {
-        throw new Error("Failed to get response")
-      }
-
-      const data = await response.json()
+      // Use server action instead of API
+      const result = await ragQuery(question, selectedModel)
       const responseTime = Date.now() - startTime
       setLastResponseTime(responseTime)
+
+      // Map sources to expected format
+      const sources = result.sources.map((s: any) => ({
+        text: s.metadata?.text || "",
+        relevance: s.score || 0,
+        region: s.metadata?.origin || ""
+      }))
 
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === loadingMessageId
             ? {
                 ...msg,
-                answer: data.answer,
-                sources: data.sources || [],
+                answer: result.answer,
+                sources,
                 isLoading: false,
                 responseTime,
-                metrics: data.metrics
+                metrics: result.metrics
               }
             : msg
         )
