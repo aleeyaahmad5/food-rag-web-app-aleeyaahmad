@@ -108,7 +108,8 @@ export async function POST(req: Request) {
     })
 
     // Create a custom response that includes sources in headers
-    const response = result.toTextStreamResponse({
+    // Use toDataStreamResponse for proper streaming format
+    const response = result.toDataStreamResponse({
       headers: {
         "X-Sources": encodeURIComponent(JSON.stringify(sources)),
         "X-Vector-Search-Time": Math.round(vectorSearchTime).toString(),

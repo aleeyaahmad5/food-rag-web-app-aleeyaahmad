@@ -283,7 +283,7 @@ export default function Home() {
             }))
           : []
 
-        // Read the stream
+        // Read the stream - Vercel AI SDK data stream format
         const reader = response.body?.getReader()
         const decoder = new TextDecoder()
         let fullText = ""
@@ -294,15 +294,33 @@ export default function Home() {
             if (done) break
             
             const chunk = decoder.decode(value, { stream: true })
-            fullText += chunk
             
-            setMessages((prev) =>
-              prev.map((msg) =>
-                msg.id === loadingMessageId
-                  ? { ...msg, answer: fullText, sources, isLoading: false }
-                  : msg
+            // Vercel AI SDK data stream format: 0:"text"\n for text chunks
+            const lines = chunk.split('\n').filter(line => line.trim())
+            for (const line of lines) {
+              // Text chunks start with "0:"
+              if (line.startsWith('0:')) {
+                try {
+                  const textContent = JSON.parse(line.slice(2))
+                  if (typeof textContent === 'string') {
+                    fullText += textContent
+                  }
+                } catch (e) {
+                  // Fallback for non-JSON
+                  console.log('Parse error for line:', line)
+                }
+              }
+            }
+            
+            if (fullText) {
+              setMessages((prev) =>
+                prev.map((msg) =>
+                  msg.id === loadingMessageId
+                    ? { ...msg, answer: fullText, sources, isLoading: false }
+                    : msg
+                )
               )
-            )
+            }
           }
         }
 
