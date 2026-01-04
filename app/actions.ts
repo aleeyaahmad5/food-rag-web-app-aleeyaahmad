@@ -55,9 +55,12 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
   console.log("[ragQuery] Starting with question:", question, "model:", model)
   
   try {
-    // Validate model selection
-    const validModels = ["llama-3.1-8b-instant", "llama-3.1-70b-versatile"]
-    const selectedModel = validModels.includes(model) ? model : "llama-3.1-8b-instant"
+    // Validate model selection - using currently available Groq models
+    const validModels = ["llama-3.1-8b-instant", "llama-3.2-70b-versatile"]
+    // Handle old model names for backward compatibility
+    let selectedModel = model
+    if (model === "llama-3.1-70b-versatile") selectedModel = "llama-3.2-70b-versatile"
+    selectedModel = validModels.includes(selectedModel) ? selectedModel : "llama-3.1-8b-instant"
     console.log("[ragQuery] Using model:", selectedModel)
     
     // Adjust max tokens based on model - 70B can handle more
