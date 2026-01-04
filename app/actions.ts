@@ -3,15 +3,29 @@
 import { Index } from "@upstash/vector"
 import Groq from "groq-sdk"
 
-const upstashIndex = new Index({
-  url: process.env.UPSTASH_VECTOR_REST_URL!,
-  token: process.env.UPSTASH_VECTOR_REST_TOKEN!,
-})
+// Lazy initialization to avoid build-time errors
+let upstashIndex: Index | null = null
+let groq: Groq | null = null
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY!,
-  timeout: 60000, // 60 second timeout for 70B model
-})
+function getUpstashIndex() {
+  if (!upstashIndex) {
+    upstashIndex = new Index({
+      url: process.env.UPSTASH_VECTOR_REST_URL!,
+      token: process.env.UPSTASH_VECTOR_REST_TOKEN!,
+    })
+  }
+  return upstashIndex
+}
+
+function getGroq() {
+  if (!groq) {
+    groq = new Groq({
+      apiKey: process.env.GROQ_API_KEY!,
+      timeout: 60000, // 60 second timeout for 70B model
+    })
+  }
+  return groq
+}
 
 interface SearchResult {
   id: string
@@ -46,10 +60,14 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
   // Adjust max tokens based on model - 70B can handle more
   const maxTokens = selectedModel.includes("70b") ? 800 : 500
   
+  // Get lazily initialized clients
+  const index = getUpstashIndex()
+  const groqClient = getGroq()
+  
   try {
     // Vector search using Upstash
     const vectorSearchStart = performance.now()
-    const results = await upstashIndex.query({
+    const results = await index.query({
       data: question,
       topK: 3,
       includeMetadata: true,
@@ -75,7 +93,7 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
     
     for (let i = 0; i < retries; i++) {
       try {
-        completion = await groq.chat.completions.create({
+        completion = await groqClient.chat.completions.create({
           model: selectedModel,
           messages: [
             {
