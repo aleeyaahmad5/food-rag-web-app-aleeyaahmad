@@ -14,6 +14,13 @@ import { StatsBar } from "@/components/stats-bar"
 import { ChatHistory, ChatSession } from "@/components/chat-history"
 import { SendIcon, Sparkles, ChefHat, Salad, Apple, Flame, Mic, MicOff, Database, Brain, Timer, Zap } from "lucide-react"
 
+interface PerformanceMetrics {
+  vectorSearchTime: number
+  llmProcessingTime: number
+  totalResponseTime: number
+  tokensUsed?: number
+}
+
 interface Message {
   id: string
   question: string
