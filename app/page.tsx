@@ -1,37 +1,600 @@
 "use client"
 
-import { useState } from "react"
+import type React from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Spinner } from "@/components/ui/spinner"
+import { ChatMessage } from "@/components/chat-message"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ParticleBackground } from "@/components/particle-background"
-import { FoodChat } from "@/components/food-chat"
+import { KeyboardShortcuts } from "@/components/keyboard-shortcuts"
+import { StatsBar } from "@/components/stats-bar"
+import { ChatHistory, ChatSession } from "@/components/chat-history"
+import { SendIcon, Sparkles, ChefHat, Salad, Apple, Flame, Mic, MicOff, Radio, Database, Brain, Timer, Zap } from "lucide-react"
+import { ragQuery, type PerformanceMetrics } from "@/app/actions"
+
+interface Message {
+  id: string
+  question: string
+  answer: string
+  sources: Array<{ text: string; relevance: number; region: string }>
+  isLoading?: boolean
+  error?: string
+  timestamp?: Date
+  responseTime?: number
+  metrics?: PerformanceMetrics
+}
+
+const exampleQuestions = [
+  { icon: Apple, text: "What fruits are popular in tropical regions?", color: "text-red-500" },
+  { icon: Flame, text: "Tell me about spicy foods and their origins", color: "text-orange-500" },
+  { icon: Salad, text: "What are some healthy vegetable options?", color: "text-green-500" },
+  { icon: ChefHat, text: "What makes different cuisines unique?", color: "text-purple-500" },
+]
 
 export default function Home() {
-  const [messageCount, setMessageCount] = useState(0)
-  const [showHistory, setShowHistory] = useState(false)
-  const [triggerNewChat, setTriggerNewChat] = useState(false)
+  const [messages, setMessages] = useState<Message[]>([])
+  const [input, setInput] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [isListening, setIsListening] = useState(false)
+  const [totalSources, setTotalSources] = useState(0)
+  const [lastResponseTime, setLastResponseTime] = useState<number | undefined>()
+  const [chats, setChats] = useState<ChatSession[]>([])
+  const [currentChatId, setCurrentChatId] = useState<string | null>(null)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [selectedModel, setSelectedModel] = useState<string>("llama-3.1-8b-instant")
+  const [useStreaming, setUseStreaming] = useState(true)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  const handleClearChat = () => {
-    // Toggle to trigger new chat in FoodChat component
-    setTriggerNewChat(prev => !prev)
+  // Load chats from localStorage on mount
+  useEffect(() => {
+    const savedChats = localStorage.getItem("food-rag-chats")
+    if (savedChats) {
+      try {
+        const parsed = JSON.parse(savedChats)
+        setChats(parsed.map((chat: any) => ({
+          ...chat,
+          createdAt: new Date(chat.createdAt),
+          updatedAt: new Date(chat.updatedAt),
+          messages: chat.messages.map((m: any) => ({
+            ...m,
+            timestamp: m.timestamp ? new Date(m.timestamp) : undefined
+          }))
+        })))
+      } catch (e) {
+        console.error("Failed to load chats:", e)
+      }
+    }
+  }, [])
+
+  // Save chats to localStorage
+  useEffect(() => {
+    if (chats.length > 0) {
+      localStorage.setItem("food-rag-chats", JSON.stringify(chats))
+    }
+  }, [chats])
+
+  // Auto-save current chat when messages change
+  useEffect(() => {
+    if (currentChatId && messages.length > 0) {
+      setChats(prev => prev.map(chat => 
+        chat.id === currentChatId 
+          ? { ...chat, messages: messages.filter(m => !m.isLoading), updatedAt: new Date() }
+          : chat
+      ))
+    }
+  }, [messages, currentChatId])
+
+  // Auto-scroll to bottom when new messages arrive
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [messages])
+
+  // Focus input on load
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [])
+
+  // Calculate total sources
+  useEffect(() => {
+    const total = messages.reduce((acc, msg) => acc + (msg.sources?.length || 0), 0)
+    setTotalSources(total)
+  }, [messages])
+
+  const handleNewChat = useCallback(() => {
+    // Save current chat if it has messages
+    if (currentChatId && messages.length > 0) {
+      setChats((prev) =>
+        prev.map((chat) =>
+          chat.id === currentChatId
+            ? { ...chat, messages: messages.filter((m) => !m.isLoading), updatedAt: new Date() }
+            : chat
+        )
+      )
+    }
+
+    // Create new chat
+    const newChat: ChatSession = {
+      id: Date.now().toString(),
+      title: "New Chat",
+      messages: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }
+
+    setChats((prev) => [newChat, ...prev])
+    setCurrentChatId(newChat.id)
+    setMessages([])
+    setTotalSources(0)
+    setLastResponseTime(undefined)
+    inputRef.current?.focus()
+  }, [currentChatId, messages])
+
+  const handleSelectChat = useCallback((chat: ChatSession) => {
+    // Save current chat before switching
+    if (currentChatId && messages.length > 0 && currentChatId !== chat.id) {
+      setChats((prev) =>
+        prev.map((c) =>
+          c.id === currentChatId
+            ? { ...c, messages: messages.filter((m) => !m.isLoading), updatedAt: new Date() }
+            : c
+        )
+      )
+    }
+
+    setCurrentChatId(chat.id)
+    setMessages(chat.messages)
+    // Recalculate totals
+    const total = chat.messages.reduce((acc, msg) => acc + (msg.sources?.length || 0), 0)
+    setTotalSources(total)
+    const lastMsg = chat.messages[chat.messages.length - 1]
+    setLastResponseTime(lastMsg?.responseTime)
+  }, [currentChatId, messages])
+
+  const handleDeleteChat = useCallback((chatId: string) => {
+    setChats((prev) => {
+      const newChats = prev.filter((c) => c.id !== chatId)
+      // If deleting current chat, clear messages and select another
+      if (chatId === currentChatId) {
+        if (newChats.length > 0) {
+          setCurrentChatId(newChats[0].id)
+          setMessages(newChats[0].messages)
+        } else {
+          setCurrentChatId(null)
+          setMessages([])
+        }
+        setTotalSources(0)
+        setLastResponseTime(undefined)
+      }
+      return newChats
+    })
+  }, [currentChatId])
+
+  const handleClearChat = useCallback(() => {
+    setMessages([])
+    setCurrentChatId(null)
+    setTotalSources(0)
+    setLastResponseTime(undefined)
+    inputRef.current?.focus()
+  }, [])
+
+  const handleFocusInput = () => {
+    inputRef.current?.focus()
+  }
+
+  // Voice input handler
+  const handleVoiceInput = () => {
+    if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
+      alert("Voice input is not supported in your browser. Try Chrome!")
+      return
+    }
+
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
+    const recognition = new SpeechRecognition()
+    
+    recognition.lang = "en-US"
+    recognition.continuous = false
+    recognition.interimResults = false
+
+    recognition.onstart = () => setIsListening(true)
+    recognition.onend = () => setIsListening(false)
+    recognition.onerror = () => setIsListening(false)
+    
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript
+      setInput(transcript)
+      inputRef.current?.focus()
+    }
+
+    recognition.start()
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!input.trim() || isLoading) return
+
+    const question = input.trim()
+    setInput("")
+    setIsLoading(true)
+    const startTime = Date.now()
+
+    // Add loading message
+    const loadingMessageId = Date.now().toString()
+
+    // Create new chat if none exists
+    if (!currentChatId) {
+      const newChat: ChatSession = {
+        id: loadingMessageId + "-chat",
+        title: question,
+        messages: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
+      setChats((prev) => [newChat, ...prev])
+      setCurrentChatId(newChat.id)
+    } else {
+      // Update chat title if it's still "New Chat"
+      setChats((prev) =>
+        prev.map((chat) =>
+          chat.id === currentChatId && chat.title === "New Chat"
+            ? { ...chat, title: question.slice(0, 50) + (question.length > 50 ? "..." : ""), updatedAt: new Date() }
+            : chat
+        )
+      )
+    }
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: loadingMessageId,
+        question,
+        answer: "",
+        sources: [],
+        isLoading: true,
+        timestamp: new Date(),
+      },
+    ])
+
+    try {
+      if (useStreaming) {
+        // Streaming mode
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question, model: selectedModel }),
+        })
+
+        if (!response.ok) {
+          throw new Error("Failed to get response")
+        }
+
+        // Get sources from headers
+        const sourcesHeader = response.headers.get("X-Sources")
+        const vectorSearchTime = response.headers.get("X-Vector-Search-Time")
+        const sources = sourcesHeader 
+          ? JSON.parse(decodeURIComponent(sourcesHeader)).map((s: any) => ({
+              text: s.metadata?.text || s.text || "",
+              relevance: s.score || s.relevance || 0,
+              region: s.metadata?.origin || s.region || ""
+            }))
+          : []
+
+        // Read the stream
+        const reader = response.body?.getReader()
+        const decoder = new TextDecoder()
+        let fullText = ""
+
+        if (reader) {
+          while (true) {
+            const { done, value } = await reader.read()
+            if (done) break
+            
+            const chunk = decoder.decode(value, { stream: true })
+            fullText += chunk
+            
+            setMessages((prev) =>
+              prev.map((msg) =>
+                msg.id === loadingMessageId
+                  ? { ...msg, answer: fullText, sources, isLoading: false }
+                  : msg
+              )
+            )
+          }
+        }
+
+        const responseTime = Date.now() - startTime
+        setLastResponseTime(responseTime)
+
+        // Final update
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === loadingMessageId
+              ? { 
+                  ...msg, 
+                  answer: fullText, 
+                  sources, 
+                  isLoading: false,
+                  responseTime,
+                  metrics: {
+                    vectorSearchTime: parseInt(vectorSearchTime || "0"),
+                    llmProcessingTime: responseTime - parseInt(vectorSearchTime || "0"),
+                    totalResponseTime: responseTime
+                  }
+                }
+              : msg
+          )
+        )
+      } else {
+        // Non-streaming mode using server action
+        const result = await ragQuery(question, selectedModel)
+        const responseTime = Date.now() - startTime
+        setLastResponseTime(responseTime)
+
+        // Map sources to expected format
+        const sources = result.sources.map((s: any) => ({
+          text: s.metadata?.text || "",
+          relevance: s.score || 0,
+          region: s.metadata?.origin || ""
+        }))
+
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === loadingMessageId
+              ? {
+                  ...msg,
+                  answer: result.answer,
+                  sources,
+                  isLoading: false,
+                  responseTime,
+                  metrics: result.metrics
+                }
+              : msg
+          )
+        )
+      }
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "An error occurred"
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === loadingMessageId
+            ? {
+                ...msg,
+                error: errorMessage,
+                isLoading: false,
+              }
+            : msg
+        )
+      )
+    } finally {
+      setIsLoading(false)
+      inputRef.current?.focus()
+    }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative flex flex-col">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative">
       <ParticleBackground />
+      <KeyboardShortcuts onNewChat={handleNewChat} onFocusInput={handleFocusInput} />
       
-      <Header onClearChat={handleClearChat} messageCount={messageCount} showHistory={showHistory} onHistoryToggle={setShowHistory} />
-
-      <main className="flex-1 relative z-10">
-        <FoodChat 
-          onMessageCountChange={setMessageCount} 
-          showHistory={showHistory} 
-          onHistoryChange={setShowHistory}
-          triggerNewChat={triggerNewChat}
+      <div className="flex flex-1">
+        {/* Desktop Sidebar */}
+        <ChatHistory 
+          chats={chats}
+          currentChatId={currentChatId}
+          onSelectChat={handleSelectChat}
+          onNewChat={handleNewChat}
+          onDeleteChat={handleDeleteChat}
+          collapsed={sidebarCollapsed}
+          setCollapsed={setSidebarCollapsed}
         />
-      </main>
 
-      <Footer />
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col min-w-0">
+          <Header 
+            onClearChat={handleClearChat} 
+            onNewChat={handleNewChat}
+            messageCount={messages.length} 
+            messages={messages}
+            chats={chats}
+            currentChatId={currentChatId}
+            onSelectChat={handleSelectChat}
+            onDeleteChat={handleDeleteChat}
+          />
+
+          <main className="flex-1 w-full max-w-3xl mx-auto px-4 py-8 relative z-10 transition-all">
+            {/* Stats Bar */}
+            <StatsBar 
+              responseTime={lastResponseTime} 
+              sourceCount={totalSources} 
+              messageCount={messages.length} 
+            />
+
+            {/* Welcome Message */}
+            {messages.length === 0 && (
+              <div className="space-y-8 mb-12 animate-fade-in">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center justify-center p-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg shadow-blue-200 dark:shadow-blue-900/30 mb-4 animate-bounce-slow">
+                    <Sparkles className="w-10 h-10 text-white" />
+                  </div>
+                  <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 dark:from-blue-300 dark:via-indigo-300 dark:to-purple-300 bg-clip-text text-transparent">
+                    Welcome to Food RAG
+                  </h2>
+                  <p className="text-lg text-slate-600 dark:text-slate-300 max-w-md mx-auto">
+                    Your AI-powered culinary companion. Ask anything about foods, ingredients, recipes, and cuisines from around the world!
+                  </p>
+                </div>
+
+                {/* Feature badges */}
+                <div className="flex flex-wrap justify-center gap-2">
+                  <span className="px-3 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full">
+                    Chat History
+                  </span>
+                  <span className="px-3 py-1 text-xs font-medium bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full">
+                    Voice Input
+                  </span>
+                  <span className="px-3 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 rounded-full">
+                    Keyboard Shortcuts
+                  </span>
+                  <span className="px-3 py-1 text-xs font-medium bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 rounded-full">
+                    Export Chat
+                  </span>
+                  <span className="px-3 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 rounded-full">
+                    Dark Mode
+                  </span>
+                </div>
+
+                {/* Example Questions */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {exampleQuestions.map((example, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setInput(example.text)}
+                      className="group p-4 text-left rounded-xl border border-slate-200/50 bg-white/80 dark:bg-slate-800/80 dark:border-slate-700/30 hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 dark:hover:from-slate-700 dark:hover:to-slate-600 transition-all duration-300 hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-blue-900/20 hover:scale-[1.02] hover:border-blue-300 dark:hover:border-blue-600 backdrop-blur-sm"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className={`p-2 rounded-lg bg-gradient-to-br from-slate-100 to-slate-50 dark:from-slate-700 dark:to-slate-600 group-hover:from-blue-100 group-hover:to-indigo-100 dark:group-hover:from-blue-900/50 dark:group-hover:to-indigo-900/50 transition-colors`}>
+                          <example.icon className={`w-5 h-5 ${example.color} transition-transform group-hover:scale-110`} />
+                        </div>
+                        <p className="text-sm text-slate-700 dark:text-slate-200 font-medium leading-relaxed">{example.text}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Quick tip */}
+                <div className="text-center">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 inline-block px-4 py-2 rounded-full">
+                    Tip: Press <kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded text-xs font-mono mx-1">?</kbd> for keyboard shortcuts
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Messages */}
+            <div className="space-y-6">
+              {messages.map((message, index) => (
+                <div key={message.id} className="animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <ChatMessage message={message} isLoading={message.isLoading} error={message.error} />
+                  
+                  {/* Performance Metrics Display - Your special feature */}
+                  {message.metrics && !message.isLoading && (
+                    <div className="ml-11 mt-3">
+                      <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide flex items-center gap-2 mb-2">
+                        <Zap className="w-4 h-4" />
+                        Performance Metrics
+                      </p>
+                      <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border border-emerald-200/50 dark:border-emerald-700/50 p-3 rounded-xl">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                          <div className="flex items-center gap-2">
+                            <div className="p-1.5 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg shadow-sm">
+                              <Database className="w-3 h-3 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wide">Vector Search</p>
+                              <p className="text-sm font-bold text-slate-900 dark:text-slate-100">{message.metrics.vectorSearchTime}ms</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="p-1.5 bg-gradient-to-br from-purple-400 to-purple-500 rounded-lg shadow-sm">
+                              <Brain className="w-3 h-3 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wide">LLM Processing</p>
+                              <p className="text-sm font-bold text-slate-900 dark:text-slate-100">{message.metrics.llmProcessingTime}ms</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="p-1.5 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-lg shadow-sm">
+                              <Timer className="w-3 h-3 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wide">Total Time</p>
+                              <p className="text-sm font-bold text-slate-900 dark:text-slate-100">{message.metrics.totalResponseTime}ms</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+          </main>
+
+          {/* Input Area */}
+          <div className="border-t border-slate-200/50 dark:border-slate-700/50 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md sticky bottom-0 w-full shadow-lg shadow-slate-100/20 dark:shadow-slate-900/50 z-20">
+            <div className="max-w-3xl mx-auto px-4 py-4">
+              {/* Model Selection & Streaming Toggle - Your special features */}
+              <div className="flex items-center justify-end gap-2 mb-3 flex-wrap">
+                <select
+                  value={selectedModel}
+                  onChange={(e) => setSelectedModel(e.target.value)}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-0 focus:ring-2 focus:ring-blue-500 cursor-pointer transition-all hover:bg-slate-300 dark:hover:bg-slate-600"
+                >
+                  <option value="llama-3.1-8b-instant">⚡ Llama 3.1 8B (Fast)</option>
+                  <option value="llama-3.1-70b-versatile">🧠 Llama 3.1 70B (Smart)</option>
+                </select>
+                
+                <button
+                  type="button"
+                  onClick={() => setUseStreaming(!useStreaming)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                    useStreaming
+                      ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md"
+                      : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400"
+                  }`}
+                >
+                  <Radio className={`w-3 h-3 ${useStreaming ? "animate-pulse" : ""}`} />
+                  {useStreaming ? "Streaming On" : "Streaming Off"}
+                </button>
+              </div>
+
+              <form onSubmit={handleSubmit} className="flex gap-3">
+                <div className="relative flex-1">
+                  <Input
+                    ref={inputRef}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Ask about foods, ingredients, recipes..."
+                    disabled={isLoading}
+                    className="flex-1 bg-slate-100/80 dark:bg-slate-700/80 border-0 pr-12 py-6 rounded-xl focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-all placeholder:text-slate-400"
+                  />
+                  {/* Voice input button */}
+                  <button
+                    type="button"
+                    onClick={handleVoiceInput}
+                    className={`absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg transition-all ${
+                      isListening 
+                        ? "bg-red-100 text-red-500 animate-pulse" 
+                        : "text-slate-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30"
+                    }`}
+                    title={isListening ? "Listening..." : "Voice input"}
+                  >
+                    {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                  </button>
+                </div>
+                <Button
+                  type="submit"
+                  disabled={isLoading || !input.trim()}
+                  size="icon"
+                  className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white h-12 w-12 rounded-xl shadow-lg shadow-blue-200 dark:shadow-blue-900/30 hover:shadow-xl transition-all hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+                >
+                  {isLoading ? <Spinner className="w-5 h-5" /> : <SendIcon className="w-5 h-5" />}
+                </Button>
+              </form>
+              <p className="text-xs text-center text-slate-400 mt-2">
+                Press <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-xs font-mono mx-1">Enter</kbd> to send • <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-xs font-mono mx-1">Ctrl+K</kbd> to focus
+              </p>
+            </div>
+          </div>
+
+          <Footer />
+        </div>
+      </div>
     </div>
   )
 }
