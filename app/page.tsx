@@ -14,6 +14,7 @@ import { StatsBar } from "@/components/stats-bar"
 import { ChatHistory, ChatSession } from "@/components/chat-history"
 import { SendIcon, Sparkles, ChefHat, Salad, Apple, Flame, Mic, MicOff, Radio, Database, Brain, Timer, Zap } from "lucide-react"
 import { ragQuery } from "@/app/actions"
+import { logQuery } from "@/lib/analytics"
 
 interface PerformanceMetrics {
   vectorSearchTime: number
@@ -279,6 +280,18 @@ export default function Home() {
         region: s.metadata?.origin || ""
       }))
 
+      // Log successful query to analytics
+      logQuery({
+        query: question,
+        model: selectedModel,
+        success: true,
+        responseTime,
+        vectorSearchTime: result.metrics?.vectorSearchTime,
+        llmProcessingTime: result.metrics?.llmProcessingTime,
+        sourceCount: sources.length,
+        tokensUsed: result.metrics?.tokensUsed
+      })
+
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === loadingMessageId
@@ -298,6 +311,16 @@ export default function Home() {
       const errorMessage = error instanceof Error 
         ? error.message 
         : "Failed to get response"
+      
+      // Log failed query to analytics
+      logQuery({
+        query: question,
+        model: selectedModel,
+        success: false,
+        errorMessage,
+        responseTime: Date.now() - startTime,
+        sourceCount: 0
+      })
       
       setMessages((prev) =>
         prev.map((msg) =>

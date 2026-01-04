@@ -1,4 +1,5 @@
-import { Heart, Zap, Database } from "lucide-react"
+import { Heart, Zap, Database, BarChart3 } from "lucide-react"
+import Link from "next/link"
 
 export function Footer() {
   return (
@@ -14,6 +15,14 @@ export function Footer() {
               <Zap className="w-3.5 h-3.5 text-yellow-500" />
               Groq LLM
             </span>
+            <Link 
+              href="/admin" 
+              className="flex items-center gap-1.5 hover:text-blue-500 transition-colors"
+              title="Admin Dashboard"
+            >
+              <BarChart3 className="w-3.5 h-3.5 text-blue-500" />
+              Analytics
+            </Link>
           </div>
           <p className="flex items-center gap-1.5">
             Made with <Heart className="w-3.5 h-3.5 text-red-500 animate-pulse" /> using Next.js

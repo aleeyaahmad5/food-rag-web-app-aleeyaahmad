@@ -48,6 +48,8 @@ The application leverages **AI-assisted development** using v0.dev to build a so
 - ⚡ **Real-time Streaming** - Stream AI responses in real-time with toggle option
 - 📈 **Performance Metrics** - Track vector search time, LLM processing time, and token usage
 - 📱 **Mobile-Optimized** - Fully responsive design for all devices
+- 📊 **Analytics Dashboard** - Track popular queries, success rates, and response patterns at `/admin`
+- 🔬 **Usage Tracking** - Monitor all queries with detailed performance logging
 
 > **📌 Note on Model Selection:**  
 > Originally planned to use Llama 3.1 70B, but the Groq free tier API key doesn't include access to the 70B models. We're using **Llama 3.1 8B-instant** instead, which is:
@@ -132,6 +134,7 @@ food-rag-web-app/
 ├── app/                        # 🌐 Next.js Web Application (Week 4-5)
 │   ├── actions.ts              # Server actions for RAG queries
 │   ├── api/chat/route.ts       # Streaming API endpoint
+│   ├── admin/page.tsx          # 📊 Admin analytics dashboard
 │   ├── layout.tsx              # Root layout with theme setup
 │   ├── page.tsx                # Home page component
 │   └── globals.css             # Global styles
@@ -142,6 +145,9 @@ food-rag-web-app/
 │   ├── particle-background.tsx # Background effects
 │   ├── theme-provider.tsx      # Dark/light mode
 │   └── ui/                     # Shadcn UI components
+├── lib/                        # 🔧 Utility Libraries
+│   ├── utils.ts                # General utilities
+│   └── analytics.ts            # 📈 Query tracking & analytics
 ├── docs/                       # 📚 Documentation
 │   ├── ARCHITECTURE.md         # System architecture & design
 │   ├── API.md                  # API reference documentation
@@ -426,6 +432,9 @@ Sources:
 ✅ **Type-Safe Code** - Full TypeScript implementation  
 ✅ **Comprehensive Documentation** - Architecture, API, and development guides  
 ✅ **Portfolio Quality** - Professional UI/UX suitable for employer/client showcase  
+✅ **Usage Analytics** - Track all queries with success/failure rates and response times  
+✅ **Admin Dashboard** - Full analytics dashboard at `/admin` with charts and insights  
+✅ **Query Insights** - Popular queries, trends over time, and performance breakdown  
 
 ---
 
@@ -462,6 +471,10 @@ Sources:
 | Social sharing | ✅ Complete | Twitter, Facebook, LinkedIn, Copy |
 | Performance metrics | ✅ Complete | Real-time dashboard per response |
 | Streaming responses | ✅ Complete | Toggle on/off with Vercel AI SDK |
+| **Usage tracking** | ✅ Complete | All queries logged with performance data |
+| **Admin dashboard** | ✅ Complete | Analytics at [/admin](/admin) |
+| **Query analytics** | ✅ Complete | Popular queries, success rates, trends |
+| **System health monitoring** | ✅ Complete | Vector DB & LLM status display |
 
 ### ✅ PART 4: Professional Portfolio Documentation
 | Document | Status | Location |
