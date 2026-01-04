@@ -12,7 +12,7 @@ import { ParticleBackground } from "@/components/particle-background"
 import { KeyboardShortcuts } from "@/components/keyboard-shortcuts"
 import { StatsBar } from "@/components/stats-bar"
 import { ChatHistory, ChatSession } from "@/components/chat-history"
-import { SendIcon, Sparkles, ChefHat, Salad, Apple, Flame, Mic, MicOff, Database, Brain, Timer, Zap } from "lucide-react"
+import { SendIcon, Sparkles, ChefHat, Salad, Apple, Flame, Mic, MicOff, Radio, Database, Brain, Timer, Zap } from "lucide-react"
 import { ragQuery } from "@/app/actions"
 
 interface PerformanceMetrics {
