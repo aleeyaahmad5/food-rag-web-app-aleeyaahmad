@@ -75,10 +75,14 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
     const vectorSearchTime = performance.now() - vectorSearchStart
 
     // Format sources
-    const sources: SearchResult[] = results.map((result) => ({
-      id: result.id,
-      score: result.score,
-      metadata: result.metadata as SearchResult["metadata"],
+    const sources: SearchResult[] = results.map((result: any, idx: number) => ({
+      id: String(result.id || idx),
+      score: Number(result.score || 0),
+      metadata: {
+        text: String(result.metadata?.text || ""),
+        category: String(result.metadata?.category || "Food"),
+        origin: String(result.metadata?.origin || "Unknown")
+      },
     }))
 
     // Build context from search results
@@ -146,7 +150,7 @@ export async function ragQuery(question: string, model: string = "llama-3.1-8b-i
     }
   } catch (error) {
     console.error("[v0] RAG Query Error:", error)
-    const errorMessage = error instanceof Error ? error.message : "Unknown error"
-    throw new Error(`Failed to process your question: ${errorMessage}. Please try again or use the faster 8B model.`)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    throw new Error(`Failed to process your question: ${errorMessage}`)
   }
 }

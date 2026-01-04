@@ -284,8 +284,8 @@ export default function Home() {
           msg.id === loadingMessageId
             ? {
                 ...msg,
-                answer: result.answer,
-                sources,
+                answer: result.answer || "No answer generated",
+                sources: sources || [],
                 isLoading: false,
                 responseTime,
                 metrics: result.metrics
@@ -294,7 +294,11 @@ export default function Home() {
         )
       )
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "An error occurred"
+      console.error("Error in handleSubmit:", error)
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : "Failed to get response"
+      
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === loadingMessageId
