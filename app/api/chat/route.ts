@@ -1,13 +1,12 @@
 import { Index } from "@upstash/vector"
-import { createGroq } from "@ai-sdk/groq"
-import { streamText } from "ai"
+import Groq from "groq-sdk"
 
 // Set longer timeout for Edge runtime (especially for 70B model)
 export const maxDuration = 60 // 60 seconds max for Vercel
 
 // Lazy initialization to avoid build-time errors
 let upstashIndex: Index | null = null
-let groq: ReturnType<typeof createGroq> | null = null
+let groq: Groq | null = null
 
 function getUpstashIndex() {
   if (!upstashIndex) {
@@ -21,7 +20,7 @@ function getUpstashIndex() {
 
 function getGroq() {
   if (!groq) {
-    groq = createGroq({
+    groq = new Groq({
       apiKey: process.env.GROQ_API_KEY!,
     })
   }
@@ -45,10 +44,7 @@ export async function POST(req: Request) {
     const { question, model = "llama-3.1-8b-instant" } = await req.json()
 
     if (!question || typeof question !== "string") {
-      return new Response(JSON.stringify({ error: "Question is required" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      })
+      return Response.json({ error: "Question is required" }, { status: 400 })
     }
 
     // Validate model selection
@@ -79,54 +75,49 @@ export async function POST(req: Request) {
       .map((source, index) => `[${index + 1}] ${source.metadata.text}`)
       .join("\n\n")
 
-    // Generate AI response using Groq with streaming
+    // Generate AI response using Groq (simple, no streaming)
     const llmStart = performance.now()
+    const maxTokens = selectedModel.includes("70b") ? 800 : 500
     
-    // Adjust settings based on model - 70B needs more time
-    const maxTokensValue = selectedModel.includes("70b") ? 1024 : 500
-    
-    const result = streamText({
-      model: groqClient(selectedModel),
-      system:
-        "You are a helpful food knowledge assistant. Answer questions based on the provided context. Be concise and informative.",
-      prompt: `Context:\n${context}\n\nQuestion: ${question}\n\nAnswer based on the context above:`,
+    const completion = await groqClient.chat.completions.create({
+      model: selectedModel,
+      messages: [
+        {
+          role: "system",
+          content: "You are a helpful food knowledge assistant. Answer questions based on the provided context. Be concise and informative.",
+        },
+        {
+          role: "user",
+          content: `Context:\n${context}\n\nQuestion: ${question}\n\nAnswer based on the context above:`,
+        },
+      ],
       temperature: 0.7,
-      maxOutputTokens: maxTokensValue,
-      onFinish: async ({ usage }) => {
-        const llmProcessingTime = performance.now() - llmStart
-        const totalResponseTime = performance.now() - startTime
-        
-        // Log metrics for debugging
-        console.log("[Performance Metrics]", {
-          model: selectedModel,
-          vectorSearchTime: Math.round(vectorSearchTime),
-          llmProcessingTime: Math.round(llmProcessingTime),
-          totalResponseTime: Math.round(totalResponseTime),
-          tokensUsed: usage?.totalTokens,
-        })
-      },
+      max_tokens: maxTokens,
     })
+    
+    const llmProcessingTime = performance.now() - llmStart
+    const answer = completion.choices[0]?.message?.content?.trim() || "No answer generated"
+    const totalResponseTime = performance.now() - startTime
 
-    // Create a custom response that includes sources in headers
-    // Use toTextStreamResponse which sends plain text chunks
-    const response = result.toTextStreamResponse({
-      headers: {
-        "X-Sources": encodeURIComponent(JSON.stringify(sources)),
-        "X-Vector-Search-Time": Math.round(vectorSearchTime).toString(),
-        "X-LLM-Start-Time": llmStart.toString(),
-        "X-Start-Time": startTime.toString(),
-      },
-    })
-
-    return response
-  } catch (error) {
-    console.error("[v0] Streaming RAG Query Error:", error)
-    return new Response(
-      JSON.stringify({ error: "Failed to process your question. Please try again." }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
+    return Response.json({
+      answer,
+      sources: sources.map(s => ({
+        text: s.metadata.text,
+        relevance: s.score,
+        region: s.metadata.origin
+      })),
+      metrics: {
+        vectorSearchTime: Math.round(vectorSearchTime),
+        llmProcessingTime: Math.round(llmProcessingTime),
+        totalResponseTime: Math.round(totalResponseTime),
+        tokensUsed: completion.usage?.total_tokens
       }
+    })
+  } catch (error) {
+    console.error("[API] Error:", error)
+    return Response.json(
+      { error: "Failed to process your question. Please try again." },
+      { status: 500 }
     )
   }
 }

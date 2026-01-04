@@ -12,8 +12,7 @@ import { ParticleBackground } from "@/components/particle-background"
 import { KeyboardShortcuts } from "@/components/keyboard-shortcuts"
 import { StatsBar } from "@/components/stats-bar"
 import { ChatHistory, ChatSession } from "@/components/chat-history"
-import { SendIcon, Sparkles, ChefHat, Salad, Apple, Flame, Mic, MicOff, Radio, Database, Brain, Timer, Zap } from "lucide-react"
-import { ragQuery, type PerformanceMetrics } from "@/app/actions"
+import { SendIcon, Sparkles, ChefHat, Salad, Apple, Flame, Mic, MicOff, Database, Brain, Timer, Zap } from "lucide-react"
 
 interface Message {
   id: string
@@ -260,104 +259,35 @@ export default function Home() {
     ])
 
     try {
-      if (useStreaming) {
-        // Streaming mode
-        const response = await fetch("/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question, model: selectedModel }),
-        })
+      // Simple API call - always use the same approach
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, model: selectedModel }),
+      })
 
-        if (!response.ok) {
-          throw new Error("Failed to get response")
-        }
-
-        // Get sources from headers
-        const sourcesHeader = response.headers.get("X-Sources")
-        const vectorSearchTime = response.headers.get("X-Vector-Search-Time")
-        const sources = sourcesHeader 
-          ? JSON.parse(decodeURIComponent(sourcesHeader)).map((s: any) => ({
-              text: s.metadata?.text || s.text || "",
-              relevance: s.score || s.relevance || 0,
-              region: s.metadata?.origin || s.region || ""
-            }))
-          : []
-
-        // Read the stream - plain text chunks from toTextStreamResponse
-        const reader = response.body?.getReader()
-        const decoder = new TextDecoder()
-        let fullText = ""
-
-        if (reader) {
-          while (true) {
-            const { done, value } = await reader.read()
-            if (done) break
-            
-            // toTextStreamResponse sends plain text chunks
-            const chunk = decoder.decode(value, { stream: true })
-            fullText += chunk
-            
-            // Update message as we receive chunks
-            setMessages((prev) =>
-              prev.map((msg) =>
-                msg.id === loadingMessageId
-                  ? { ...msg, answer: fullText, sources, isLoading: false }
-                  : msg
-              )
-            )
-          }
-        }
-
-        const responseTime = Date.now() - startTime
-        setLastResponseTime(responseTime)
-
-        // Final update
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === loadingMessageId
-              ? { 
-                  ...msg, 
-                  answer: fullText, 
-                  sources, 
-                  isLoading: false,
-                  responseTime,
-                  metrics: {
-                    vectorSearchTime: parseInt(vectorSearchTime || "0"),
-                    llmProcessingTime: responseTime - parseInt(vectorSearchTime || "0"),
-                    totalResponseTime: responseTime
-                  }
-                }
-              : msg
-          )
-        )
-      } else {
-        // Non-streaming mode using server action
-        const result = await ragQuery(question, selectedModel)
-        const responseTime = Date.now() - startTime
-        setLastResponseTime(responseTime)
-
-        // Map sources to expected format
-        const sources = result.sources.map((s: any) => ({
-          text: s.metadata?.text || "",
-          relevance: s.score || 0,
-          region: s.metadata?.origin || ""
-        }))
-
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === loadingMessageId
-              ? {
-                  ...msg,
-                  answer: result.answer,
-                  sources,
-                  isLoading: false,
-                  responseTime,
-                  metrics: result.metrics
-                }
-              : msg
-          )
-        )
+      if (!response.ok) {
+        throw new Error("Failed to get response")
       }
+
+      const data = await response.json()
+      const responseTime = Date.now() - startTime
+      setLastResponseTime(responseTime)
+
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === loadingMessageId
+            ? {
+                ...msg,
+                answer: data.answer,
+                sources: data.sources || [],
+                isLoading: false,
+                responseTime,
+                metrics: data.metrics
+              }
+            : msg
+        )
+      )
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "An error occurred"
       setMessages((prev) =>
